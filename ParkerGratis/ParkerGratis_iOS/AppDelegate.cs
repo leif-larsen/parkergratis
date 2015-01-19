@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 
 using Foundation;
 using UIKit;
@@ -14,33 +14,54 @@ namespace ParkerGratis_iOS
 	public partial class AppDelegate : UIApplicationDelegate
 	{
 		// class-level declarations
-		
-		public override UIWindow Window {
-			get;
-			set;
-		}
-		
-		// This method is invoked when the application is about to move from active to inactive state.
-		// OpenGL applications should use this method to pause.
-		public override void OnResignActivation (UIApplication application)
+		UIWindow window;
+		UINavigationController navController;
+		UIViewController rootViewController;
+
+		//
+		// This method is invoked when the application has loaded and is ready to run. In this
+		// method you should instantiate the window, load the UI into it and then make the window
+		// visible.
+		//
+		// You have 17 seconds to return from this method, or iOS will terminate your application.
+		//
+		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
-		}
-		
-		// This method should be used to release shared resources and it should store the application state.
-		// If your application supports background exection this method is called instead of WillTerminate
-		// when the user quits.
-		public override void DidEnterBackground (UIApplication application)
-		{
-		}
-		
-		// This method is called as part of the transiton from background to active state.
-		public override void WillEnterForeground (UIApplication application)
-		{
-		}
-		
-		// This method is called when the application is about to terminate. Save data, if needed.
-		public override void WillTerminate (UIApplication application)
-		{
+			// create a new window instance based on the screen size
+			window = new UIWindow (UIScreen.MainScreen.Bounds);
+			
+			// If you have defined a root view controller, set it here:
+			// window.RootViewController = myViewController;
+			
+			// make the window visible
+			window.MakeKeyAndVisible ();
+
+			navController = new UINavigationController ();
+
+			// Create our home controller based on the device
+			if (UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone) {
+				rootViewController = new HomeScreen ();
+			} else {
+				rootViewController = new HomeScreen ();
+				// If I ever create a screen for iPad, add it here!
+			}
+
+			rootViewController.Title = "Parker gratis";
+
+			// Style the application
+			UINavigationBar.Appearance.TintColor = UIColor.FromRGB (44, 44, 232);
+			UITextAttributes ta = new UITextAttributes ();
+			ta.Font = UIFont.FromName ("AmericanTypeWriter-Bold", 0f);
+			UINavigationBar.Appearance.SetTitleTextAttributes (ta);
+			ta.Font = UIFont.FromName ("AmericanTypeWriter", 0f);
+			UIBarButtonItem.Appearance.SetTitleTextAttributes (ta, UIControlState.Normal);
+
+			// Push the view controller onto the nav controller and show the window
+			navController.PushViewController (rootViewController, false);
+			window.RootViewController = navController;
+			window.MakeKeyAndVisible ();
+
+			return true;
 		}
 	}
 }
