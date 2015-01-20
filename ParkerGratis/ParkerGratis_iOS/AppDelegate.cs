@@ -4,6 +4,7 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
+using Parse;
 
 namespace ParkerGratis_iOS
 {
@@ -17,6 +18,14 @@ namespace ParkerGratis_iOS
 		UIWindow window;
 		UINavigationController navController;
 		UIViewController rootViewController;
+
+		public AppDelegate ()
+		{
+			// Initialize the Parse client with your Application ID and .NET Key found on
+			// your Parse dashboard
+			ParseClient.Initialize("2RrpdzkyZzxJTAdXYKDMyuwvbz2YUnqA1KNvf8nu",
+				"pQGQd4u1207eZd2y2N4LkgXHyBWpPFtLrrcZMpzb");
+		}
 
 		//
 		// This method is invoked when the application has loaded and is ready to run. In this
