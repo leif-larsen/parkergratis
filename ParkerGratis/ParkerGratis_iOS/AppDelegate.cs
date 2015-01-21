@@ -5,6 +5,7 @@ using System.Linq;
 using Foundation;
 using UIKit;
 using Parse;
+using CoreLocation;
 
 namespace ParkerGratis_iOS
 {
@@ -18,6 +19,7 @@ namespace ParkerGratis_iOS
 		UIWindow window;
 		UINavigationController navController;
 		UIViewController rootViewController;
+		private CLLocationManager _locationManager;
 
 		public AppDelegate ()
 		{
@@ -38,6 +40,9 @@ namespace ParkerGratis_iOS
 		{
 			// create a new window instance based on the screen size
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
+			_locationManager = new CLLocationManager ();
+			_locationManager.RequestWhenInUseAuthorization ();
+
 			
 			// If you have defined a root view controller, set it here:
 			// window.RootViewController = myViewController;
@@ -55,10 +60,10 @@ namespace ParkerGratis_iOS
 				// If I ever create a screen for iPad, add it here!
 			}
 
-			rootViewController.Title = "Parker gratis";
-
 			// Style the application
-			UINavigationBar.Appearance.TintColor = UIColor.FromRGB (44, 44, 232);
+			UINavigationBar.Appearance.BarTintColor = UIColor.FromRGB (0, 122, 255);
+			UINavigationBar.Appearance.TintColor = UIColor.White;
+
 			UITextAttributes ta = new UITextAttributes ();
 			ta.Font = UIFont.FromName ("AmericanTypeWriter-Bold", 0f);
 			UINavigationBar.Appearance.SetTitleTextAttributes (ta);

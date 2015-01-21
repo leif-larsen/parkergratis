@@ -1,46 +1,55 @@
 {
   "images": [
     {
+      "filename": "ParkerGratis_AppIkon29.png",
       "size": "29x29",
       "scale": "1x",
       "idiom": "iphone"
     },
     {
+      "filename": "ParkerGratis_AppIkon58_2X.png",
       "size": "29x29",
       "scale": "2x",
       "idiom": "iphone"
     },
     {
+      "filename": "ParkerGratis_AppIkon87_3X.png",
       "size": "29x29",
       "scale": "3x",
       "idiom": "iphone"
     },
     {
+      "filename": "ParkerGratis_AppIkon80_2X.png",
       "size": "40x40",
       "scale": "2x",
       "idiom": "iphone"
     },
     {
+      "filename": "ParkerGratis_AppIkon120_2X.png",
       "size": "40x40",
       "scale": "3x",
       "idiom": "iphone"
     },
     {
+      "filename": "ParkerGratis_AppIkon57.png",
       "size": "57x57",
       "scale": "1x",
       "idiom": "iphone"
     },
     {
+      "filename": "ParkerGratis_AppIkon114_2X.png",
       "size": "57x57",
       "scale": "2x",
       "idiom": "iphone"
     },
     {
+      "filename": "ParkerGratis_AppIkon120_2X.png",
       "size": "60x60",
       "scale": "2x",
       "idiom": "iphone"
     },
     {
+      "filename": "ParkerGratis_AppIkon180_3X.png",
       "size": "60x60",
       "scale": "3x",
       "idiom": "iphone"
@@ -96,6 +105,7 @@
       "idiom": "ipad"
     },
     {
+      "filename": "ParkerGratis_AppIkon120_2X.png",
       "size": "120x120",
       "scale": "1x",
       "idiom": "car"
