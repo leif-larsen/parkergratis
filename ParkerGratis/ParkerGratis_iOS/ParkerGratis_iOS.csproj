@@ -114,7 +114,6 @@
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
-    <InterfaceDefinition Include="Screens\HomeScreen.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -123,15 +122,15 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="Screens\HomeScreen.cs" />
-    <Compile Include="Screens\HomeScreen.designer.cs">
-      <DependentUpon>HomeScreen.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Screens\MapView.cs" />
+    <Compile Include="BusinessLogic\DataLoader.cs" />
   </ItemGroup>
+  <Import Project="..\ParkerGratis\ParkerGratis.projitems" Label="Shared" Condition="Exists('..\ParkerGratis\ParkerGratis.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Screens\" />
     <Folder Include="Resources\images\" />
+    <Folder Include="BusinessLogic\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\images\currentloc.png" />

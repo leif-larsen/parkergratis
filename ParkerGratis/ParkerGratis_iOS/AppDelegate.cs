@@ -51,7 +51,7 @@ namespace ParkerGratis_iOS
 			window.MakeKeyAndVisible ();
 
 			navController = new UINavigationController ();
-
+			/*
 			// Create our home controller based on the device
 			if (UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone) {
 				rootViewController = new HomeScreen ();
@@ -59,6 +59,9 @@ namespace ParkerGratis_iOS
 				rootViewController = new HomeScreen ();
 				// If I ever create a screen for iPad, add it here!
 			}
+			*/
+
+			rootViewController = new MapView ();
 
 			// Style the application
 			UINavigationBar.Appearance.BarTintColor = UIColor.FromRGB (0, 122, 255);
@@ -67,6 +70,7 @@ namespace ParkerGratis_iOS
 			UITextAttributes ta = new UITextAttributes ();
 			ta.Font = UIFont.FromName ("AmericanTypeWriter-Bold", 0f);
 			UINavigationBar.Appearance.SetTitleTextAttributes (ta);
+			UINavigationBar.Appearance.SetTitleTextAttributes (new UITextAttributes () { TextColor = UIColor.White });
 			ta.Font = UIFont.FromName ("AmericanTypeWriter", 0f);
 			UIBarButtonItem.Appearance.SetTitleTextAttributes (ta, UIControlState.Normal);
 
