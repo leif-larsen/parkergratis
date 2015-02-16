@@ -2,6 +2,7 @@
 using Parse;
 using ParkerGratis;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ParkerGratis_iOS
 {
@@ -13,16 +14,8 @@ namespace ParkerGratis_iOS
 		{
 		}
 
-		public List<ParkingInfo> getParkingList(double userLat, double userLong)
+		public async Task<List<ParkingInfo>> execGeoQuery(double userLat, double userLong)
 		{
-			execGeoQuery (userLat, userLong);
-
-			return _geoList;
-		} // End getParkingList
-
-		private async void execGeoQuery(double userLat, double userLong)
-		{
-			Console.WriteLine (userLat + " " + userLong);
 			var userGeoPoint = new ParseGeoPoint (userLat, userLong);
 			var query = ParseObject.GetQuery ("FreeParking");
 			query = query.WhereNear ("location", userGeoPoint);
@@ -30,20 +23,21 @@ namespace ParkerGratis_iOS
 			try {
 				var parkingObjects = await query.FindAsync();
 
-				Console.WriteLine ("Returned from await. Time to loop through the result");
-
 				foreach (var parkObj in parkingObjects) {
-					Console.WriteLine (parkObj.Get<ParseGeoPoint>("location"));
+					double locLat = parkObj.Get<ParseGeoPoint>("location").Latitude;
+					double locLong = parkObj.Get<ParseGeoPoint>("location").Longitude;
 
-					//var geoLoc = parkObj;
-					var locLat = 2.0;
-					var locLong = 2.0;
-					//_geoList.Add (new ParkingInfo (parkObj.Get<string>("address"), parkObj.Get<bool>("verified"), parkObj.Get<bool>("reported"), locLat, locLong, parkObj.Get<int>("type"), parkObj.ObjectId));
+					int type = parkObj.Get<int>("type");
+					ParkingTypes _type = (ParkingTypes) type;
+
+					_geoList.Add (new ParkingInfo (parkObj.Get<string>("address"), parkObj.Get<bool>("verified"), parkObj.Get<bool>("reported"), locLat, locLong, _type, parkObj.ObjectId, parkObj.Get<string>("type_other")));
 				}
 			}
 			catch(ParseException e) {
 				Console.WriteLine (e.Message);
 			}
+
+			return _geoList;
 		} // End execGeoQuery
 	}
 }

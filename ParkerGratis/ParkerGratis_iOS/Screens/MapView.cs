@@ -98,14 +98,15 @@ namespace ParkerGratis_iOS
 			View.AddSubview (_btnCurrentLocation);*/
 		} // End initMap
 
-		private void addParkingLocations()
+		private async void addParkingLocations()
 		{
-			var parkingList = _dataLoader.getParkingList (_map.UserLocation.Coordinate.Latitude, _map.UserLocation.Coordinate.Longitude);
+			var parkingList = await _dataLoader.execGeoQuery (_map.UserLocation.Coordinate.Latitude, _map.UserLocation.Coordinate.Longitude);
+
 			foreach (var parkingLoc in parkingList) {
-				var annotation = new MKPointAnnotation () { Title = parkingLoc.Title };
+				var annotation = new MKPointAnnotation () { Title = parkingLoc.Title, Subtitle = parkingLoc.Subtitle };
+				Console.WriteLine (parkingLoc.Latitude);
 				annotation.SetCoordinate (new CLLocationCoordinate2D (parkingLoc.Latitude, parkingLoc.Longitude));
 				_map.AddAnnotation (annotation);
-				annotation.SetCoordinate (new CLLocationCoordinate2D (ParseGeoPoint));
 			}
 		} // End addParkingLocations
 	}
