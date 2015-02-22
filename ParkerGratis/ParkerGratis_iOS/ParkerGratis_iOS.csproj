@@ -124,6 +124,8 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Screens\MapView.cs" />
     <Compile Include="BusinessLogic\DataLoader.cs" />
+    <Compile Include="BusinessLogic\ParkingAnnotation.cs" />
+    <Compile Include="Screens\ParkingDetails.cs" />
   </ItemGroup>
   <Import Project="..\ParkerGratis\ParkerGratis.projitems" Label="Shared" Condition="Exists('..\ParkerGratis\ParkerGratis.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

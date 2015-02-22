@@ -19,11 +19,15 @@ namespace ParkerGratis_iOS
 	{
 		private MKMapView _map;
 		private DataLoader _dataLoader;
+		private ParkingDetails _parkingDetails;
+		protected string annotationIdentifier = "ParkingAnnotation";
+		UIButton detailButton; // avoid GC
 
 		public MapView () : base (UITableViewStyle.Grouped, null)
 		{
 			initialize ();
 			initMap ();
+			_map.GetViewForAnnotation = GetViewForAnnotation;
 		}
 
 		protected void initialize() 
@@ -31,9 +35,6 @@ namespace ParkerGratis_iOS
 			// Right side nav button, add new item
 			NavigationItem.SetRightBarButtonItem (new UIBarButtonItem (UIBarButtonSystemItem.Add), false);
 			//NavigationItem.RightBarButtonItem.Clicked += (sender, e) => { };
-
-			// Left side nav button, menu
-			//NavigationItem.SetLeftBarButtonItem( new UIBarButtonItem ( UIBarButtonItem.
 
 			_dataLoader = new DataLoader ();
 		}
@@ -97,17 +98,51 @@ namespace ParkerGratis_iOS
 
 			View.AddSubview (_btnCurrentLocation);*/
 		} // End initMap
-
+			
 		private async void addParkingLocations()
 		{
 			var parkingList = await _dataLoader.execGeoQuery (_map.UserLocation.Coordinate.Latitude, _map.UserLocation.Coordinate.Longitude);
 
 			foreach (var parkingLoc in parkingList) {
-				var annotation = new MKPointAnnotation () { Title = parkingLoc.Title, Subtitle = parkingLoc.Subtitle };
-				Console.WriteLine (parkingLoc.Latitude);
-				annotation.SetCoordinate (new CLLocationCoordinate2D (parkingLoc.Latitude, parkingLoc.Longitude));
+				var annotation = new ParkingAnnotation (new CLLocationCoordinate2D(parkingLoc.Latitude, parkingLoc.Longitude), parkingLoc.Title, parkingLoc.Subtitle, parkingLoc.ObjId);
 				_map.AddAnnotation (annotation);
 			}
 		} // End addParkingLocations
+
+		public void showDetails(ParkingAnnotation annotation)
+		{
+			_parkingDetails = new ParkingDetails (annotation.ObjId);
+			this.NavigationController.NavigationItem.BackBarButtonItem = new UIBarButtonItem ("Tilbake", UIBarButtonItemStyle.Plain, null);
+
+			NavigationController.PushViewController (_parkingDetails, true);
+		}
+			
+		MKAnnotationView GetViewForAnnotation(MKMapView mapView, IMKAnnotation annotation)
+		{
+			MKAnnotationView annotationView = mapView.DequeueReusableAnnotation (annotationIdentifier);
+
+			if (annotation is MKUserLocation)
+				return null;
+			else {
+				if (annotationView == null)
+					annotationView = new MKPinAnnotationView (annotation, annotationIdentifier);
+				else
+					annotationView.Annotation = annotation;
+
+				annotationView.CanShowCallout = true;
+				(annotationView as MKPinAnnotationView).AnimatesDrop = true;
+				(annotationView as MKPinAnnotationView).PinColor = MKPinAnnotationColor.Red;
+				annotationView.Selected = true;
+
+				detailButton = UIButton.FromType (UIButtonType.DetailDisclosure);
+				detailButton.TouchUpInside += (sender, e) => {
+					showDetails ((ParkingAnnotation)annotation);
+				};
+
+				annotationView.RightCalloutAccessoryView = detailButton;
+			}
+
+			return annotationView;
+		} // end GetViewForAnnotation
 	}
 }
