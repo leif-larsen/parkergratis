@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,52 +7,69 @@ using MonoTouch.Dialog;
 using Foundation;
 using UIKit;
 using ParkerGratis;
+using MapKit;
 
 namespace ParkerGratis_iOS
 {
 	public partial class ParkingDetails : DialogViewController
 	{
-		private ParkingInfo _parkObj;
 		private string _objId;
 		private string _title;
 		private string _address;
-		private string _type;
 		private string _typeDesc;
 		private string _reported;
 		private string _verified;
+		private DataLoader _dataLoader;
+		private double _distance;
+		private MKMapView _map;
 
-		public ParkingDetails (string objId) : base (UITableViewStyle.Grouped, null)
+		public ParkingDetails (string objId, MKMapView map) : base (UITableViewStyle.Grouped, null)
 		{
 			_objId = objId;
-			//setInformationDetails ();
+			_map = map;
+			_dataLoader = new DataLoader ();
 
-			Root = new RootElement (objId) {
-				new Section ("First Section") {
-					new StringElement ("Hello", () => {
-						new UIAlertView ("Hola", "Thanks for tapping!", null, "Continue").Show (); 
-					}),
-					new EntryElement ("Name", "Enter your name", String.Empty)
+			setInformationDetails ();
+		}
+
+		private void initGui()
+		{
+			Root = new RootElement ("Om parkeringen") {
+				new Section (_address) {
+					new StringElement (String.Format("Type: {0}" ,_title)),
+					new StringElement (String.Format("Annet: {0}", _typeDesc)),
+					new StringElement(String.Format("Distanse: {0:N2} km", _distance)),
+					new StringElement (String.Format("Verifisert: {0}", _verified)),
+					new StringElement (String.Format("Rapportert: {0}", _reported))
 				},
-				new Section ("Second Section") {
+				new Section () {
+					new StringElement("Verifiser parkeringsplass", 
+						() => { _dataLoader.verifyParkingSpot(_objId); } ),
+					new StringElement("Rapporter parkeringsplass",
+						() => { _dataLoader.reportParkingSpot(_objId); } )
 				},
 			};
 		}
 
-		private void setInformationDetails() 
+		private async void setInformationDetails() 
 		{
-			_title = _parkObj.Title;
-			_address = _parkObj.Address;
-			_typeDesc = _parkObj.Subtitle;
+			var data = await _dataLoader.getParkingSpotInfo (_objId);
+			_title = data.Title;
+			_address = data.Address;
+			_typeDesc = data.Subtitle;
+			_distance = _dataLoader.getDistanceToParkingSpot (_map.UserLocation.Coordinate.Latitude, _map.UserLocation.Coordinate.Longitude, data.Latitude, data.Longitude);
 
-			if (_parkObj.Verified)
+			if (data.Verified)
 				_verified = "Ja";
 			else
 				_verified = "Nei";
 
-			if (_parkObj.Reported)
+			if (data.Reported)
 				_reported = "Ja";
 			else
 				_reported = "Nei";
+
+			initGui ();
 		} // end SetInformationDetails
 	}
 }
