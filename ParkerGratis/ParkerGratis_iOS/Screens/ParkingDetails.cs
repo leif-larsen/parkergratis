@@ -43,6 +43,8 @@ namespace ParkerGratis_iOS
 					new StringElement (String.Format("Rapportert: {0}", _reported))
 				},
 				new Section () {
+					new StringElement("Veibeskrivelse", 
+						() => {  } ),
 					new StringElement("Verifiser parkeringsplass", 
 						() => { _dataLoader.verifyParkingSpot(_objId); } ),
 					new StringElement("Rapporter parkeringsplass",

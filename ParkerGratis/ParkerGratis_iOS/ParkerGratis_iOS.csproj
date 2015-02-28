@@ -50,6 +50,11 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
+    <IpaPackageName>
+    </IpaPackageName>
+    <MtouchI18n>
+    </MtouchI18n>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>full</DebugType>
@@ -126,6 +131,7 @@
     <Compile Include="BusinessLogic\DataLoader.cs" />
     <Compile Include="BusinessLogic\ParkingAnnotation.cs" />
     <Compile Include="Screens\ParkingDetails.cs" />
+    <Compile Include="Screens\NewParkingSpot.cs" />
   </ItemGroup>
   <Import Project="..\ParkerGratis\ParkerGratis.projitems" Label="Shared" Condition="Exists('..\ParkerGratis\ParkerGratis.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
@@ -133,12 +139,17 @@
     <Folder Include="Screens\" />
     <Folder Include="Resources\images\" />
     <Folder Include="BusinessLogic\" />
+    <Folder Include="Resources\nb.lproj\" />
+    <Folder Include="Resources\nob.lproj\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\images\currentloc.png" />
     <BundleResource Include="Resources\Default-568h%402x.png" />
     <BundleResource Include="Resources\Default%402x.png" />
     <BundleResource Include="Resources\Default.png" />
+    <BundleResource Include="Resources\images\verified70.png" />
+    <BundleResource Include="Resources\images\verified60.png" />
+    <BundleResource Include="Resources\nob.lproj\InfoPlist.strings" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="googleadmob">
