@@ -11,6 +11,7 @@ using CoreLocation;
 
 using ParkerGratis;
 using Parse;
+using System.Drawing;
 
 namespace ParkerGratis_iOS
 {
@@ -22,13 +23,19 @@ namespace ParkerGratis_iOS
 		private NewParkingSpot _newParking;
 		protected string annotationIdentifier = "ParkingAnnotation";
 		UIButton detailButton; // avoid GC
+		private UITextField _filterDistance;
 
 		public MapView () : base (UITableViewStyle.Grouped, null)
 		{
 			initialize ();
 			initMap ();
 
-			Root = new RootElement (NSBundle.MainBundle.LocalizedString("Title", null)) {} ;
+			Root = new RootElement ("Park for free".translate()) {} ;
+
+			/*var frame = new RectangleF (0, 0, (float)View.Bounds.Width, 40);
+			_filterDistance = new UITextField (frame);
+			View.AddSubview (_filterDistance);
+			BuildPickerView ();*/
 		}
 
 		protected void initialize() 
@@ -49,7 +56,6 @@ namespace ParkerGratis_iOS
 			View.AddSubview (_map);
 
 			_map.ShowsUserLocation = true;
-			Console.WriteLine ("initial loc:"+_map.UserLocation.Coordinate.Latitude + "," + _map.UserLocation.Coordinate.Longitude);
 
 			_map.DidUpdateUserLocation += (sender, e) => {
 				if (_map.UserLocation != null) {
@@ -77,7 +83,7 @@ namespace ParkerGratis_iOS
 			var parkingList = await _dataLoader.execGeoQuery (_map.UserLocation.Coordinate.Latitude, _map.UserLocation.Coordinate.Longitude);
 
 			foreach (var parkingLoc in parkingList) {
-				var annotation = new ParkingAnnotation (new CLLocationCoordinate2D(parkingLoc.Latitude, parkingLoc.Longitude), parkingLoc.Title, parkingLoc.Subtitle, parkingLoc.ObjId, parkingLoc.Verified);
+				var annotation = new ParkingAnnotation (new CLLocationCoordinate2D(parkingLoc.Latitude, parkingLoc.Longitude), parkingLoc.Title.translate(), parkingLoc.Subtitle, parkingLoc.ObjId, parkingLoc.Verified);
 				_map.AddAnnotation (annotation);
 			}
 		} // end addParkingLocations
@@ -94,11 +100,11 @@ namespace ParkerGratis_iOS
 
 		private void addNewSpot()
 		{
-			_newParking = new NewParkingSpot();
+			_newParking = new NewParkingSpot(_map.UserLocation.Coordinate.Latitude, _map.UserLocation.Coordinate.Longitude);
 			_newParking.NavigationItem.SetLeftBarButtonItem (new UIBarButtonItem ("<", UIBarButtonItemStyle.Plain, (sender, args) => {
 				NavigationController.PopToRootViewController(true);
+				addParkingLocations();
 			}), true);
-
 			NavigationController.PushViewController (_newParking, true);
 		}
 
@@ -140,5 +146,50 @@ namespace ParkerGratis_iOS
 
 			return annotationView;
 		} // end GetViewForAnnotation
+
+		private readonly IList<string> colors = new List<string>
+		{
+			"Blue",
+			"Green",
+			"Red",
+			"Purple",
+			"Yellow"
+		};
+
+		private string selectedColor;
+
+		private void BuildPickerView ()
+		{
+			// Setup the picker and model
+			PickerModel model = new PickerModel(this.colors);
+			model.PickerChanged += (sender, e) => {
+				this.selectedColor = e.SelectedValue;
+			};
+
+			UIPickerView picker = new UIPickerView();
+			picker.ShowSelectionIndicator = true;
+			picker.Model = model;
+
+			// Setup the toolbar
+			UIToolbar toolbar = new UIToolbar();
+			toolbar.BarStyle = UIBarStyle.Black;
+			toolbar.Translucent = true;
+			toolbar.SizeToFit();
+
+			// Create a 'done' button for the toolbar and add it to the toolbar
+			UIBarButtonItem doneButton = new UIBarButtonItem("Done", UIBarButtonItemStyle.Done,
+				(s, e) => {
+					_filterDistance.Text = selectedColor;
+					_filterDistance.ResignFirstResponder();
+				});
+			toolbar.SetItems(new UIBarButtonItem[]{doneButton}, true);
+
+			// Tell the textbox to use the picker for input
+			_filterDistance.InputView = picker;
+
+			// Display the toolbar over the pickers
+			_filterDistance.InputAccessoryView = toolbar;
+
+		}
 	}
 }

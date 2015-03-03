@@ -3,6 +3,7 @@ using Parse;
 using ParkerGratis;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace ParkerGratis_iOS
 {
@@ -55,6 +56,33 @@ namespace ParkerGratis_iOS
 
 			return distanceInKm;
 		} // end getDistanceToParkingSpot
+
+		public async Task<bool> addNewParking(string address, double lat, double longitude, string email, string type_other, int type)
+		{
+			//Thread.Sleep (10000);
+			//return true;
+
+			try {
+				ParseObject newParking = new ParseObject ("FreeParking");
+				newParking["address"] = address;
+				newParking["verified"] = false;
+				newParking["reported"] = false;
+				newParking["email"] = email;
+				newParking["activated"] = true;
+				newParking["nrOfReported"] = 0;
+				newParking["type_other"] = type_other;
+				newParking["type"] = type;
+				newParking["location"] = new ParseGeoPoint(lat, longitude);
+
+				await newParking.SaveAsync();
+
+				return true;
+			} 
+			catch(Exception ex) {
+				Console.WriteLine (ex.Message);
+				return false;
+			}
+		} // end addNewParking
 
 		public async Task<List<ParkingInfo>> execGeoQuery(double userLat, double userLong)
 		{

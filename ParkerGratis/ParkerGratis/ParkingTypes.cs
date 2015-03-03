@@ -4,6 +4,7 @@ namespace ParkerGratis
 {
 	public enum ParkingTypes
 	{
+		other,
 		street,
 		ticket,
 		weekend,
@@ -11,8 +12,7 @@ namespace ParkerGratis
 		hours2,
 		hours3,
 		hours4,
-		hours5,
-		other
+		hours5
 	}
 }
 

@@ -105,6 +105,8 @@
     <Reference Include="GoogleAdMobAds">
       <HintPath>..\Components\googleadmob-6.12.2\lib\ios-unified\GoogleAdMobAds.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.Data.Sqlite" />
+    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
@@ -127,11 +129,15 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="Screens\MapView.cs" />
     <Compile Include="BusinessLogic\DataLoader.cs" />
     <Compile Include="BusinessLogic\ParkingAnnotation.cs" />
     <Compile Include="Screens\ParkingDetails.cs" />
     <Compile Include="Screens\NewParkingSpot.cs" />
+    <Compile Include="Extensions\Extension.cs" />
+    <Compile Include="Screens\MapView.cs" />
+    <Compile Include="BusinessLogic\PickerModel.cs" />
+    <Compile Include="BusinessLogic\PickerChangedEventArgs.cs" />
+    <Compile Include="Screens\LoadingOverlay.cs" />
   </ItemGroup>
   <Import Project="..\ParkerGratis\ParkerGratis.projitems" Label="Shared" Condition="Exists('..\ParkerGratis\ParkerGratis.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
@@ -140,7 +146,7 @@
     <Folder Include="Resources\images\" />
     <Folder Include="BusinessLogic\" />
     <Folder Include="Resources\nb.lproj\" />
-    <Folder Include="Resources\nob.lproj\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\images\currentloc.png" />
@@ -149,7 +155,6 @@
     <BundleResource Include="Resources\Default.png" />
     <BundleResource Include="Resources\images\verified70.png" />
     <BundleResource Include="Resources\images\verified60.png" />
-    <BundleResource Include="Resources\nob.lproj\InfoPlist.strings" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="googleadmob">
@@ -160,5 +165,8 @@
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork%402x" />
     <ITunesArtwork Include="iTunesArtwork" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\nb.lproj\Localizable.strings" />
   </ItemGroup>
 </Project>

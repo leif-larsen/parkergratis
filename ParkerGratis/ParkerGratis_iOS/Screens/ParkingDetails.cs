@@ -34,20 +34,20 @@ namespace ParkerGratis_iOS
 
 		private void initGui()
 		{
-			Root = new RootElement ("Om parkeringen") {
+			Root = new RootElement ("About the parking".translate()) {
 				new Section (_address) {
-					new StringElement (String.Format("Type: {0}" ,_title)),
-					new StringElement (String.Format("Annet: {0}", _typeDesc)),
-					new StringElement(String.Format("Distanse: {0:N2} km", _distance)),
-					new StringElement (String.Format("Verifisert: {0}", _verified)),
-					new StringElement (String.Format("Rapportert: {0}", _reported))
+					new StringElement (String.Format("{0}: {1}" ,"Type".translate(), _title.translate())),
+					new StringElement (String.Format("{0}: {1}", "Other".translate(), _typeDesc)),
+					new StringElement(String.Format("{0}: {1:N2} km", "Distance".translate(), _distance)),
+					new StringElement (String.Format("{0}: {1}", "Verified".translate(), _verified)),
+					new StringElement (String.Format("{0}: {1}", "Reported".translate(), _reported))
 				},
 				new Section () {
-					new StringElement("Veibeskrivelse", 
-						() => {  } ),
-					new StringElement("Verifiser parkeringsplass", 
+					new StringElement("Directions".translate(), 
+						() => { openAppleMap(); } ),
+					new StringElement("Verify parking location".translate(), 
 						() => { _dataLoader.verifyParkingSpot(_objId); } ),
-					new StringElement("Rapporter parkeringsplass",
+					new StringElement("Report parking location".translate(),
 						() => { _dataLoader.reportParkingSpot(_objId); } )
 				},
 			};
@@ -62,16 +62,20 @@ namespace ParkerGratis_iOS
 			_distance = _dataLoader.getDistanceToParkingSpot (_map.UserLocation.Coordinate.Latitude, _map.UserLocation.Coordinate.Longitude, data.Latitude, data.Longitude);
 
 			if (data.Verified)
-				_verified = "Ja";
+				_verified = "Yes".translate();
 			else
-				_verified = "Nei";
+				_verified = "No".translate();
 
 			if (data.Reported)
-				_reported = "Ja";
+				_reported = "Yes".translate();
 			else
-				_reported = "Nei";
+				_reported = "No".translate();
 
 			initGui ();
 		} // end SetInformationDetails
+
+		private void openAppleMap()
+		{
+		} // end openAppleMap
 	}
 }
