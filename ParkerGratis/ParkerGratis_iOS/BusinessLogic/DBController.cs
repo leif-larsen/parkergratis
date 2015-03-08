@@ -5,8 +5,9 @@ using System.IO;
 using SQLite;
 using System.Collections.Generic;
 using System.Linq;
+using ParkerGratis;
 
-namespace ParkerGratis
+namespace ParkerGratis_iOS
 {
 	public class DBController
 	{
@@ -22,10 +23,10 @@ namespace ParkerGratis
 
 		public bool insertData(string data)
 		{
+			var db = new SQLiteConnection(_dbPath);
 			var info = new LocalInfo { Email = data };
 
 			try {
-				var db = new SQLiteConnection(_dbPath);
 
 				List<LocalInfo> result = fetchData();
 
@@ -37,34 +38,58 @@ namespace ParkerGratis
 				else
 					db.Insert(info);
 
+				db.Dispose();
+				db.Close();
+				db = null;
+
 				return true;
 			} catch (Exception ex) {
 				Console.WriteLine (ex.Message);
+
+				db.Close();
+				db = null;
+
 				return false;
 			}
 		} // end insertData
 
 		public List<LocalInfo> fetchData()
 		{
-			try {
-				var db = new SQLiteConnection(_dbPath);
+			SQLite.SQLiteConnection db = new SQLiteConnection(_dbPath);
+			List<LocalInfo> result;
 
-				var result = db.Query<LocalInfo>("SELECT * FROM LocalInfo LIMIT 1");
+			try {
+				result = db.Query<LocalInfo>("SELECT * FROM LocalInfo LIMIT 1");
+				db.Dispose();
+				db.Close ();
+				db = null;
 
 				return result;
 			} catch(Exception ex) {
 				Console.WriteLine (ex.Message);
+				db.Close ();
+				db = null;
+
 				return null;
-			}
+			} 
 		} // end fetchData
 
 		private void createDB()
 		{
 			// Create the database and a table to hold Person information.
-			using (var conn= new SQLite.SQLiteConnection(_dbPath))
-			{
+			SQLite.SQLiteConnection conn = new SQLite.SQLiteConnection(_dbPath);
+
+			try {
 				conn.CreateTable<LocalInfo>();
-			}
+
+				conn.Dispose();
+				conn.Close ();
+				conn = null;
+			} catch(Exception ex) {
+				Console.WriteLine (ex.Message);
+				conn.Close ();
+				conn = null;
+			} 
 		} // end createDB
 	}
 }

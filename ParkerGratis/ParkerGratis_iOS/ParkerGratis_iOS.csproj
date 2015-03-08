@@ -107,6 +107,10 @@
     </Reference>
     <Reference Include="Mono.Data.Sqlite" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="SQLite">
+      <HintPath>..\Components\sqlite-net-1.0.8.3\lib\ios-unified\SQLite.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
@@ -138,6 +142,7 @@
     <Compile Include="BusinessLogic\PickerModel.cs" />
     <Compile Include="BusinessLogic\PickerChangedEventArgs.cs" />
     <Compile Include="Screens\LoadingOverlay.cs" />
+    <Compile Include="BusinessLogic\DBController.cs" />
   </ItemGroup>
   <Import Project="..\ParkerGratis\ParkerGratis.projitems" Label="Shared" Condition="Exists('..\ParkerGratis\ParkerGratis.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
@@ -161,6 +166,10 @@
       <Version>6.12.2</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
+    <XamarinComponentReference Include="sqlite-net">
+      <Version>1.0.8.3</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork%402x" />
@@ -168,5 +177,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\nb.lproj\Localizable.strings" />
+    <Content Include="Resources\images\check1.png" />
   </ItemGroup>
 </Project>

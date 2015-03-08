@@ -10,7 +10,7 @@ namespace ParkerGratis_iOS
 		UIActivityIndicatorView activitySpinner;
 		UILabel loadingLabel;
 
-		public LoadingOverlay (RectangleF frame) : base (frame)
+		public LoadingOverlay (RectangleF frame, string title) : base (frame)
 		{
 			// configurable bits
 			BackgroundColor = UIColor.Black;
@@ -44,7 +44,7 @@ namespace ParkerGratis_iOS
 			));
 			loadingLabel.BackgroundColor = UIColor.Clear;
 			loadingLabel.TextColor = UIColor.White;
-			loadingLabel.Text = "Adding parking...".translate();
+			loadingLabel.Text = title.translate();
 			loadingLabel.TextAlignment = UITextAlignment.Center;
 			loadingLabel.AutoresizingMask = UIViewAutoresizing.FlexibleMargins;
 			AddSubview (loadingLabel);

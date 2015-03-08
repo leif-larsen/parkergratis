@@ -43,6 +43,8 @@ namespace ParkerGratis_iOS
 			_locationManager = new CLLocationManager ();
 			_locationManager.RequestWhenInUseAuthorization ();
 
+
+			UIApplication.SharedApplication.SetStatusBarStyle (UIStatusBarStyle.LightContent, false);
 			
 			// If you have defined a root view controller, set it here:
 			// window.RootViewController = myViewController;
@@ -78,6 +80,8 @@ namespace ParkerGratis_iOS
 			navController.PushViewController (rootViewController, false);
 			window.RootViewController = navController;
 			window.MakeKeyAndVisible ();
+
+			ParseAnalytics.TrackAppOpenedAsync ();
 
 			return true;
 		}

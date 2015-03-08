@@ -8,6 +8,8 @@ using Foundation;
 using UIKit;
 using ParkerGratis;
 using MapKit;
+using CoreGraphics;
+using System.Drawing;
 
 namespace ParkerGratis_iOS
 {
@@ -15,13 +17,15 @@ namespace ParkerGratis_iOS
 	{
 		private string _objId;
 		private string _title;
-		private string _address;
+		private string _name;
+		//private string _address;
 		private string _typeDesc;
 		private string _reported;
 		private string _verified;
 		private DataLoader _dataLoader;
 		private double _distance;
 		private MKMapView _map;
+		private LoadingOverlay _loadingOverlay;
 
 		public ParkingDetails (string objId, MKMapView map) : base (UITableViewStyle.Grouped, null)
 		{
@@ -35,7 +39,7 @@ namespace ParkerGratis_iOS
 		private void initGui()
 		{
 			Root = new RootElement ("About the parking".translate()) {
-				new Section (_address) {
+				new Section (_name) {
 					new StringElement (String.Format("{0}: {1}" ,"Type".translate(), _title.translate())),
 					new StringElement (String.Format("{0}: {1}", "Other".translate(), _typeDesc)),
 					new StringElement(String.Format("{0}: {1:N2} km", "Distance".translate(), _distance)),
@@ -43,13 +47,35 @@ namespace ParkerGratis_iOS
 					new StringElement (String.Format("{0}: {1}", "Reported".translate(), _reported))
 				},
 				new Section () {
-					new StringElement("Directions".translate(), 
-						() => { openAppleMap(); } ),
+					/*new StringElement("Directions".translate(), 
+						() => { openAppleMap(); } ), NOT TO BE IMPLEMENTED IN VERSION 1 */
 					new StringElement("Verify parking location".translate(), 
-						() => { _dataLoader.verifyParkingSpot(_objId); } ),
+						() => {
+							// Determine the correct size to start the overlay (depending on device orientation)
+							var bounds = UIScreen.MainScreen.Bounds; // portrait bounds
+							if (UIApplication.SharedApplication.StatusBarOrientation == UIInterfaceOrientation.LandscapeLeft || UIApplication.SharedApplication.StatusBarOrientation == UIInterfaceOrientation.LandscapeRight) {
+								bounds.Size = new CGSize(bounds.Size.Height, bounds.Size.Width);
+							}
+							// show the loading overlay on the UI thread using the correct orientation sizing
+							_loadingOverlay = new LoadingOverlay ((RectangleF)bounds, "Verifying parking...");
+							this.View.Add ( _loadingOverlay );
+
+							verifyParking(_objId);
+						} ),
 					new StringElement("Report parking location".translate(),
-						() => { _dataLoader.reportParkingSpot(_objId); } )
-				},
+						() => { 
+							// Determine the correct size to start the overlay (depending on device orientation)
+							var bounds = UIScreen.MainScreen.Bounds; // portrait bounds
+							if (UIApplication.SharedApplication.StatusBarOrientation == UIInterfaceOrientation.LandscapeLeft || UIApplication.SharedApplication.StatusBarOrientation == UIInterfaceOrientation.LandscapeRight) {
+								bounds.Size = new CGSize(bounds.Size.Height, bounds.Size.Width);
+							}
+							// show the loading overlay on the UI thread using the correct orientation sizing
+							_loadingOverlay = new LoadingOverlay ((RectangleF)bounds, "Reporting parking...");
+							this.View.Add ( _loadingOverlay );
+
+							reportParking(_objId);
+						} )
+				}
 			};
 		}
 
@@ -57,7 +83,8 @@ namespace ParkerGratis_iOS
 		{
 			var data = await _dataLoader.getParkingSpotInfo (_objId);
 			_title = data.Title;
-			_address = data.Address;
+			_name = data.Name;
+			//_address = data.Address;
 			_typeDesc = data.Subtitle;
 			_distance = _dataLoader.getDistanceToParkingSpot (_map.UserLocation.Coordinate.Latitude, _map.UserLocation.Coordinate.Longitude, data.Latitude, data.Longitude);
 
@@ -77,5 +104,29 @@ namespace ParkerGratis_iOS
 		private void openAppleMap()
 		{
 		} // end openAppleMap
+
+		private async void verifyParking(string objId)
+		{
+			bool verified = await _dataLoader.verifyParkingSpot (objId);
+			if (verified)
+				new UIAlertView ("Successfully verified".translate (), "Parking location is now verified. Thank you for your contribution!".translate(), null, "OK", null).Show ();
+			else
+				new UIAlertView ("Error".translate (), "Something went wrong when verifying this location. Contact the developer for further assistance.".translate(), null, "OK", null).Show ();
+
+			setInformationDetails ();
+			_loadingOverlay.Hide ();
+		}
+
+		private async void reportParking(string objId)
+		{
+			bool reported = await _dataLoader.reportParkingSpot (objId);
+			if (reported)
+				new UIAlertView ("Successfully reported".translate (), "Parking location is now reported.".translate(), null, "OK", null).Show ();
+			else
+				new UIAlertView ("Error".translate (), "Something went wrong when reporting this location. Contact the developer for further assistance.".translate(), null, "OK", null).Show ();
+
+			setInformationDetails ();
+			_loadingOverlay.Hide ();
+		}
 	}
 }

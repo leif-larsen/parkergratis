@@ -10,7 +10,6 @@ namespace ParkerGratis_iOS
 	public class DataLoader
 	{
 		private List<ParkingInfo> _geoList = new List<ParkingInfo>();
-		private ParseObject _parseObj;
 
 		public DataLoader ()
 		{
@@ -18,7 +17,6 @@ namespace ParkerGratis_iOS
 
 		public async Task<ParkingInfo> getParkingSpotInfo(string objId)
 		{
-			_parseObj = new ParseObject ("FreeParking");
 			var query = from freeParking in ParseObject.GetQuery("FreeParking")
 						where freeParking.ObjectId == objId
 						select freeParking;
@@ -30,22 +28,46 @@ namespace ParkerGratis_iOS
 			double locLat = results.Get<ParseGeoPoint>("location").Latitude;
 			double locLong = results.Get<ParseGeoPoint>("location").Longitude;
 
-			return new ParkingInfo (results.Get<string> ("address"), results.Get<bool> ("verified"), results.Get<bool> ("reported"), locLat, locLong, _type, results.ObjectId, results.Get<string> ("type_other"));
+			return new ParkingInfo (results.Get<string>("name"), results.Get<string> ("address"), results.Get<bool> ("verified"), results.Get<bool> ("reported"), locLat, locLong, _type, results.ObjectId, results.Get<string> ("type_other"));
 		} // end getParkingSpotInfo
 
-		public async void verifyParkingSpot(string objId) 
+		public async Task<bool> verifyParkingSpot(string objId) 
 		{
-			_parseObj ["verified"] = true;
+			try {
+				ParseQuery<ParseObject> query = ParseObject.GetQuery ("FreeParking");
+				ParseObject parseObj = await query.GetAsync (objId);
 
-			await _parseObj.SaveAsync ();
+				parseObj ["verified"] = true;
+				parseObj["reported"] = false;
+				parseObj["nrOfReported"] = 0;
+
+				await parseObj.SaveAsync ();
+
+				return true;
+			} catch (Exception ex) {
+				Console.WriteLine (ex.Message);
+				return false;
+			}
 		}
 
-		public async void reportParkingSpot(string objId)
+		public async Task<bool> reportParkingSpot(string objId)
 		{
-			_parseObj ["reported"] = true;
-			_parseObj ["verified"] = false;
+			try{
+				ParseQuery<ParseObject> query = ParseObject.GetQuery("FreeParking");
+				ParseObject parseObj = await query.GetAsync(objId);
 
-			await _parseObj.SaveAsync ();
+				parseObj ["reported"] = true;
+				parseObj ["verified"] = false;
+				parseObj.Increment("nrOfReported");
+
+				await parseObj.SaveAsync ();
+
+				return true;
+			} catch(Exception ex){
+				Console.WriteLine (ex.Message);
+
+				return false;
+			}
 		}
 
 		public double getDistanceToParkingSpot(double lat1, double long1, double lat2, double long2) 
@@ -57,14 +79,12 @@ namespace ParkerGratis_iOS
 			return distanceInKm;
 		} // end getDistanceToParkingSpot
 
-		public async Task<bool> addNewParking(string address, double lat, double longitude, string email, string type_other, int type)
+		public async Task<bool> addNewParking(string name, double lat, double longitude, string email, string type_other, int type)
 		{
-			//Thread.Sleep (10000);
-			//return true;
-
 			try {
 				ParseObject newParking = new ParseObject ("FreeParking");
-				newParking["address"] = address;
+				newParking["name"] = name;
+				newParking["address"] = "";
 				newParking["verified"] = false;
 				newParking["reported"] = false;
 				newParking["email"] = email;
@@ -84,11 +104,12 @@ namespace ParkerGratis_iOS
 			}
 		} // end addNewParking
 
-		public async Task<List<ParkingInfo>> execGeoQuery(double userLat, double userLong)
+		public async Task<List<ParkingInfo>> execGeoQuery(double userLat, double userLong, double distance)
 		{
 			var userGeoPoint = new ParseGeoPoint (userLat, userLong);
 			var query = ParseObject.GetQuery ("FreeParking");
-			query = query.WhereNear ("location", userGeoPoint);
+			//query = query.WhereNear ("location", userGeoPoint);
+			query = query.WhereWithinDistance("location", userGeoPoint, new ParseGeoDistance(distance/6371));
 
 			try {
 				var parkingObjects = await query.FindAsync();
@@ -100,7 +121,7 @@ namespace ParkerGratis_iOS
 					int type = parkObj.Get<int>("type");
 					ParkingTypes _type = (ParkingTypes) type;
 
-					_geoList.Add (new ParkingInfo (parkObj.Get<string>("address"), parkObj.Get<bool>("verified"), parkObj.Get<bool>("reported"), locLat, locLong, _type, parkObj.ObjectId, parkObj.Get<string>("type_other")));
+					_geoList.Add (new ParkingInfo (parkObj.Get<string>("name"), parkObj.Get<string>("address"), parkObj.Get<bool>("verified"), parkObj.Get<bool>("reported"), locLat, locLong, _type, parkObj.ObjectId, parkObj.Get<string>("type_other")));
 				}
 			}
 			catch(ParseException e) {

@@ -39,4 +39,20 @@
 "Something went wrong when adding the new parking location. Contact the developer for help." = "Noe gikk galt. Kontakt utvikleren for videre hjelp.";
 
 "Adding parking..." = "Legger til parkering...";
+"Verifying parking..." = "Verifiserer parkering...";
+"Reporting parking..." = "Rapporterer parkering...";
+"Name of parking" = "Navn på parkering"; 
+"You need to specify a unique name for the parking location." = "Du må spesifisere et navn på parkeringsplassen."; 
+"If you have selected other as parking type, you need to specify the type in the field below" = "Hvis du har valgt Annet som parkeringstype må du spesifisere typen i feltet under.";
+"Back" = "Tilbake";
+"Overview" = "Oversikt";
+
+"Parking location is now verified. Thank you for your contribution!" = "Parkeringsplassen er nå verifisert. Takk for ditt bidrag!";
+"Something went wrong when verifying this location. Contact the developer for further assistance." = "Noe gikk galt under verifiseringen. Kontakt utvikleren for videre assistanse.";
+"Parking location is now reported." = "Parkeringsplassen har blitt rapportert.";
+"Something went wrong when reporting this location. Contact the developer for further assistance." = "Noe gikk galt under rapporteringen. Kontakt utvikleren for videre assistanse.";
+"Successfully reported" = "Verifisert";
+"Successfully verified" = "Rapportert";
+"Name" = "Navn";
+"Parking name" = "Lokasjonsnavn";
 

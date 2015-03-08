@@ -24,13 +24,15 @@ namespace ParkerGratis_iOS
 		protected string annotationIdentifier = "ParkingAnnotation";
 		UIButton detailButton; // avoid GC
 		private UITextField _filterDistance;
+		private double oldLat;
+		private double oldLong;
 
 		public MapView () : base (UITableViewStyle.Grouped, null)
 		{
 			initialize ();
 			initMap ();
 
-			Root = new RootElement ("Park for free".translate()) {} ;
+			Root = new RootElement ("Overview".translate()) {} ;
 
 			/*var frame = new RectangleF (0, 0, (float)View.Bounds.Width, 40);
 			_filterDistance = new UITextField (frame);
@@ -59,11 +61,17 @@ namespace ParkerGratis_iOS
 
 			_map.DidUpdateUserLocation += (sender, e) => {
 				if (_map.UserLocation != null) {
-					Console.WriteLine ("userloc:"+_map.UserLocation.Coordinate.Latitude + "," + _map.UserLocation.Coordinate.Longitude);
-					CLLocationCoordinate2D coords = _map.UserLocation.Coordinate;
-					MKCoordinateSpan span = new MKCoordinateSpan(Calculations.kmToLatitudeDegrees(1), Calculations.kmToLongitudeDegrees(1, coords.Latitude));
-					_map.Region = new MKCoordinateRegion(coords, span);
-					addParkingLocations ();
+
+					if(_dataLoader.getDistanceToParkingSpot(_map.UserLocation.Coordinate.Latitude, _map.UserLocation.Coordinate.Longitude, oldLat, oldLong) > 0.02) {
+						Console.WriteLine ("userloc:"+_map.UserLocation.Coordinate.Latitude + "," + _map.UserLocation.Coordinate.Longitude);
+						CLLocationCoordinate2D coords = _map.UserLocation.Coordinate;
+						MKCoordinateSpan span = new MKCoordinateSpan(Calculations.kmToLatitudeDegrees(1), Calculations.kmToLongitudeDegrees(1, coords.Latitude));
+						_map.Region = new MKCoordinateRegion(coords, span);
+						addParkingLocations ();
+					}
+
+					oldLat = _map.UserLocation.Coordinate.Latitude;
+					oldLong = _map.UserLocation.Coordinate.Longitude;
 				}
 			};
 
@@ -80,7 +88,7 @@ namespace ParkerGratis_iOS
 			
 		private async void addParkingLocations()
 		{
-			var parkingList = await _dataLoader.execGeoQuery (_map.UserLocation.Coordinate.Latitude, _map.UserLocation.Coordinate.Longitude);
+			var parkingList = await _dataLoader.execGeoQuery (_map.UserLocation.Coordinate.Latitude, _map.UserLocation.Coordinate.Longitude, 5.00);
 
 			foreach (var parkingLoc in parkingList) {
 				var annotation = new ParkingAnnotation (new CLLocationCoordinate2D(parkingLoc.Latitude, parkingLoc.Longitude), parkingLoc.Title.translate(), parkingLoc.Subtitle, parkingLoc.ObjId, parkingLoc.Verified);
@@ -91,9 +99,6 @@ namespace ParkerGratis_iOS
 		private void showDetails(ParkingAnnotation annotation)
 		{
 			_parkingDetails = new ParkingDetails (annotation.ObjId, _map);
-			_parkingDetails.NavigationItem.SetLeftBarButtonItem (new UIBarButtonItem ("<", UIBarButtonItemStyle.Plain, (sender, args) => {
-				NavigationController.PopToRootViewController(true);
-			}), true);
 
 			NavigationController.PushViewController (_parkingDetails, true);
 		} // end ShowDetails
@@ -101,10 +106,12 @@ namespace ParkerGratis_iOS
 		private void addNewSpot()
 		{
 			_newParking = new NewParkingSpot(_map.UserLocation.Coordinate.Latitude, _map.UserLocation.Coordinate.Longitude);
-			_newParking.NavigationItem.SetLeftBarButtonItem (new UIBarButtonItem ("<", UIBarButtonItemStyle.Plain, (sender, args) => {
+			_newParking.NavigationItem.SetLeftBarButtonItem (new UIBarButtonItem (UIBarButtonSystemItem.Cancel), false);
+			_newParking.NavigationItem.LeftBarButtonItem.Clicked += (sender, e) => {
 				NavigationController.PopToRootViewController(true);
 				addParkingLocations();
-			}), true);
+			};
+
 			NavigationController.PushViewController (_newParking, true);
 		}
 
@@ -112,7 +119,7 @@ namespace ParkerGratis_iOS
 		{
 			return annotation.Verified;
 		}
-			
+
 		MKAnnotationView GetViewForAnnotation(MKMapView mapView, IMKAnnotation annotation)
 		{
 			MKAnnotationView annotationView = mapView.DequeueReusableAnnotation (annotationIdentifier);
@@ -129,7 +136,7 @@ namespace ParkerGratis_iOS
 				annotationView.Annotation = annotation;
 
 			annotationView.CanShowCallout = true;
-			(annotationView as MKPinAnnotationView).AnimatesDrop = true;
+			(annotationView as MKPinAnnotationView).AnimatesDrop = false;
 			(annotationView as MKPinAnnotationView).PinColor = MKPinAnnotationColor.Red;
 			annotationView.Selected = true;
 		
@@ -140,9 +147,10 @@ namespace ParkerGratis_iOS
 
 			annotationView.RightCalloutAccessoryView = detailButton;
 
-			if (isVerified((ParkingAnnotation)annotation)) {
-				annotationView.LeftCalloutAccessoryView = new UIImageView (UIImage.FromBundle("images/verified60.png") ); // Might need to replace this with a smoother icon...
-			}
+			// Icon does not seem to render properly, so wait with this for now.
+			//if (isVerified((ParkingAnnotation)annotation)) {
+			//	annotationView.LeftCalloutAccessoryView = new UIImageView (UIImage.FromBundle("images/check1.png") ); // Might need to replace this with a smoother icon...
+			//}
 
 			return annotationView;
 		} // end GetViewForAnnotation

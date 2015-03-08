@@ -4,6 +4,7 @@ namespace ParkerGratis
 {
 	public class ParkingInfo
 	{
+		private string _name = string.Empty;
 		private string _address = string.Empty;
 		private string _title = string.Empty;
 		private string _objId = string.Empty;
@@ -17,8 +18,9 @@ namespace ParkerGratis
 
 		private ParkingTypes _type;
 
-		public ParkingInfo (string address, bool verified, bool reported, double latitude, double longitude, ParkingTypes type, string objId, string subtitle)
+		public ParkingInfo (string name, string address, bool verified, bool reported, double latitude, double longitude, ParkingTypes type, string objId, string subtitle)
 		{
+			_name = name;
 			_address = address;
 			_verified = verified;
 			_reported = reported;
@@ -30,6 +32,8 @@ namespace ParkerGratis
 
 			setTitle ();
 		}
+
+		public string Name { get { return _name; } }
 
 		public string Address { get { return _address; } }
 
