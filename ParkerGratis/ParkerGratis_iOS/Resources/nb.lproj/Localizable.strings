@@ -22,6 +22,7 @@
 "Free street parking" = "Gratis gateparkering";
 "Free with ticket" = "Gratis mot billett";
 "Free in the weekend" = "Gratis i helg";
+"Commute" = "Pendlerparkering";
 
 
 "New parking" = "Ny parkeringsplass";
@@ -56,3 +57,8 @@
 "Name" = "Navn";
 "Parking name" = "Lokasjonsnavn";
 
+"Rate My App" = "Rangér Parker gratis";
+"If you like MyApp, please take the time, etc" = "Hvis du liker Parker gratis setter vi veldig pris på din tilbakemelding!";
+"No, Thanks" = "Nei takk";
+"Remind Me Later" = "Påminn meg senere";
+"Rate It Now" = "Rangér nå";

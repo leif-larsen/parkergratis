@@ -26,6 +26,8 @@ namespace ParkerGratis_iOS
 		private double _distance;
 		private MKMapView _map;
 		private LoadingOverlay _loadingOverlay;
+		private double _lat;
+		private double _long;
 
 		public ParkingDetails (string objId, MKMapView map) : base (UITableViewStyle.Grouped, null)
 		{
@@ -47,8 +49,8 @@ namespace ParkerGratis_iOS
 					new StringElement (String.Format("{0}: {1}", "Reported".translate(), _reported))
 				},
 				new Section () {
-					/*new StringElement("Directions".translate(), 
-						() => { openAppleMap(); } ), NOT TO BE IMPLEMENTED IN VERSION 1 */
+					new StringElement("Directions".translate(), 
+						() => { openAppleMap(); } ), 
 					new StringElement("Verify parking location".translate(), 
 						() => {
 							// Determine the correct size to start the overlay (depending on device orientation)
@@ -85,6 +87,8 @@ namespace ParkerGratis_iOS
 			_title = data.Title;
 			_name = data.Name;
 			//_address = data.Address;
+			_lat = data.Latitude;
+			_long = data.Longitude;
 			_typeDesc = data.Subtitle;
 			_distance = _dataLoader.getDistanceToParkingSpot (_map.UserLocation.Coordinate.Latitude, _map.UserLocation.Coordinate.Longitude, data.Latitude, data.Longitude);
 
@@ -103,6 +107,7 @@ namespace ParkerGratis_iOS
 
 		private void openAppleMap()
 		{
+			ExternalMaps.Plugin.CrossExternalMaps.Current.NavigateTo (_title.translate(), _lat, _long, ExternalMaps.Plugin.Abstractions.NavigationType.Driving);
 		} // end openAppleMap
 
 		private async void verifyParking(string objId)

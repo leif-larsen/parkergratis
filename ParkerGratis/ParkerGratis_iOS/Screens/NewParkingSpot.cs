@@ -19,26 +19,28 @@ namespace ParkerGratis_iOS
 {
 	public partial class NewParkingSpot : DialogViewController
 	{
-		private DBController _dbController;
+		//private DBController _dbController;
 		private DataLoader _dataLoader;
 		private LoadingOverlay _loadingOverlay;
 
 		public NewParkingSpot (double latitude, double longitude) : base (UITableViewStyle.Grouped, null)
 		{
-			_dbController = new DBController ();
+			//_dbController = new DBController ();
 			_dataLoader = new DataLoader ();
 			initGui (latitude, longitude);
 		} // end constructor
 
 		private void initGui(double latitude, double longitude)
 		{
-			string emailFromDb = "";
+			/*string emailFromDb = "";
 			List<LocalInfo> parkInfObj = _dbController.fetchData ();
 
-			if (parkInfObj != null)
-				emailFromDb = parkInfObj.First ().Email;
+			if (parkInfObj != null) {
+				if(parkInfObj.Count > 0)
+					emailFromDb = parkInfObj.First ().Email;
+			}*/
 
-			var email = new EntryElement ("Email".translate (), "Email".translate (), emailFromDb);
+			//var email = new EntryElement ("Email".translate (), "Email".translate (), emailFromDb);
 			var otherInfo = new EntryElement ("Other type".translate(), null, null);
 
 			var radioSection = new Section ();
@@ -88,7 +90,7 @@ namespace ParkerGratis_iOS
 			Root = new RootElement ("New parking".translate()) {
 				new Section ("Information".translate()) {
 					parkingName,
-					email,
+					//email,
 					new RootElement ("Parking type".translate(), radioGroup) {
 						radioSection
 					},
@@ -108,13 +110,13 @@ namespace ParkerGratis_iOS
 							// show the loading overlay on the UI thread using the correct orientation sizing
 							_loadingOverlay = new LoadingOverlay ((RectangleF)bounds, "Adding parking...");
 							this.View.Add ( _loadingOverlay );
-							addNewParking(latitude, longitude, email.Value, otherInfo.Value, radioGroup.Selected, parkingName.Value); 
+							addNewParking(latitude, longitude, otherInfo.Value, radioGroup.Selected, parkingName.Value); 
 						})
 				}
 			};
 		}
 
-		private async void addNewParking(double lat, double longitude, string email, string otherInfo, int parkingType, string name)
+		private async void addNewParking(double lat, double longitude, string otherInfo, int parkingType, string name)
 		{
 			bool addedToParse = false;
 
@@ -122,10 +124,10 @@ namespace ParkerGratis_iOS
 				if (parkingType == (int)ParkingTypes.other && otherInfo.Equals ("")) {
 					new UIAlertView ("Error".translate (), "If you have selected other as parking type, you need to specify the type in the field below".translate (), null, "OK", null).Show ();
 				} else {
-					addedToParse = await _dataLoader.addNewParking (name, lat, longitude, email, otherInfo, parkingType); 
-					bool addedToDB = _dbController.insertData (email);
+					addedToParse = await _dataLoader.addNewParking (name, lat, longitude, otherInfo, parkingType); 
+					//bool addedToDB = _dbController.insertData (email);
 
-					if (addedToDB && addedToParse) {
+					if (addedToParse) {
 						new UIAlertView ("Successfully added".translate (), "The new parking location is successfully added. Thank you for your contribution!".translate (), null, "OK", null).Show ();
 						NavigationController.PopToRootViewController (true);
 					}

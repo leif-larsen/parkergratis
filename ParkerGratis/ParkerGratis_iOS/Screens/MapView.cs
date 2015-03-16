@@ -23,7 +23,6 @@ namespace ParkerGratis_iOS
 		private NewParkingSpot _newParking;
 		protected string annotationIdentifier = "ParkingAnnotation";
 		UIButton detailButton; // avoid GC
-		private UITextField _filterDistance;
 		private double oldLat;
 		private double oldLong;
 
@@ -33,11 +32,6 @@ namespace ParkerGratis_iOS
 			initMap ();
 
 			Root = new RootElement ("Overview".translate()) {} ;
-
-			/*var frame = new RectangleF (0, 0, (float)View.Bounds.Width, 40);
-			_filterDistance = new UITextField (frame);
-			View.AddSubview (_filterDistance);
-			BuildPickerView ();*/
 		}
 
 		protected void initialize() 
@@ -154,50 +148,5 @@ namespace ParkerGratis_iOS
 
 			return annotationView;
 		} // end GetViewForAnnotation
-
-		private readonly IList<string> colors = new List<string>
-		{
-			"Blue",
-			"Green",
-			"Red",
-			"Purple",
-			"Yellow"
-		};
-
-		private string selectedColor;
-
-		private void BuildPickerView ()
-		{
-			// Setup the picker and model
-			PickerModel model = new PickerModel(this.colors);
-			model.PickerChanged += (sender, e) => {
-				this.selectedColor = e.SelectedValue;
-			};
-
-			UIPickerView picker = new UIPickerView();
-			picker.ShowSelectionIndicator = true;
-			picker.Model = model;
-
-			// Setup the toolbar
-			UIToolbar toolbar = new UIToolbar();
-			toolbar.BarStyle = UIBarStyle.Black;
-			toolbar.Translucent = true;
-			toolbar.SizeToFit();
-
-			// Create a 'done' button for the toolbar and add it to the toolbar
-			UIBarButtonItem doneButton = new UIBarButtonItem("Done", UIBarButtonItemStyle.Done,
-				(s, e) => {
-					_filterDistance.Text = selectedColor;
-					_filterDistance.ResignFirstResponder();
-				});
-			toolbar.SetItems(new UIBarButtonItem[]{doneButton}, true);
-
-			// Tell the textbox to use the picker for input
-			_filterDistance.InputView = picker;
-
-			// Display the toolbar over the pickers
-			_filterDistance.InputAccessoryView = toolbar;
-
-		}
 	}
 }

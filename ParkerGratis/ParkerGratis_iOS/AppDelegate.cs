@@ -6,6 +6,7 @@ using Foundation;
 using UIKit;
 using Parse;
 using CoreLocation;
+using MTiRate;
 
 namespace ParkerGratis_iOS
 {
@@ -40,9 +41,26 @@ namespace ParkerGratis_iOS
 		{
 			// create a new window instance based on the screen size
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
-			_locationManager = new CLLocationManager ();
-			_locationManager.RequestWhenInUseAuthorization ();
 
+			// Set up iRate for rating prompt. Minimum 10 days, and 15 uses before we ask.
+			iRate.SharedInstance.DaysUntilPrompt = 10;
+			iRate.SharedInstance.UsesUntilPrompt = 15;
+			//iRate.SharedInstance.ApplicationBundleID = "com.charcoaldesign.rainbowblocks-free"; THIS IS FOR TEST PURPOSES
+			iRate.SharedInstance.OnlyPromptIfLatestVersion = false;
+
+			iRate.SharedInstance.MessageTitle = "Rate My App".translate();
+			iRate.SharedInstance.Message = "If you like MyApp, please take the time, etc".translate();
+			iRate.SharedInstance.CancelButtonLabel = "No, Thanks".translate();
+			iRate.SharedInstance.RemindButtonLabel = "Remind Me Later".translate();
+			iRate.SharedInstance.RateButtonLabel = "Rate It Now".translate();
+
+			// Enable preview mode so everytime Application is launched you get the promt
+			iRate.SharedInstance.PreviewMode = false;
+
+			_locationManager = new CLLocationManager ();
+
+			if(UIDevice.CurrentDevice.CheckSystemVersion(8,0))
+				_locationManager.RequestWhenInUseAuthorization ();
 
 			UIApplication.SharedApplication.SetStatusBarStyle (UIStatusBarStyle.LightContent, false);
 			

@@ -12,7 +12,8 @@ namespace ParkerGratis
 		hours2,
 		hours3,
 		hours4,
-		hours5
+		hours5,
+		commute
 	}
 }
 
