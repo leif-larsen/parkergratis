@@ -1,4 +1,5 @@
-﻿"Park for free" = "Parker gratis";
+﻿CFBundleDisplayName = "Parker gratis";
+"Park for free" = "Parker gratis";
 
 "About the parking" = "Om parkeringen";
 "Type" = "Type";
@@ -62,3 +63,6 @@
 "No, Thanks" = "Nei takk";
 "Remind Me Later" = "Påminn meg senere";
 "Rate It Now" = "Rangér nå";
+
+"Thank you" = "Takk";
+"WelcomeGuide" = "Takk for at du lastet ned Parker gratis! I en startfase er vi avhengig av din hjelp til å samle data. Neste gang du benytter en gratis parkeringsplass, gjør den tilgjengelig for andre, ved å legge den til her!";

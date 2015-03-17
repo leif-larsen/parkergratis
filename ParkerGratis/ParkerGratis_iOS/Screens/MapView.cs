@@ -12,6 +12,7 @@ using CoreLocation;
 using ParkerGratis;
 using Parse;
 using System.Drawing;
+using CoreGraphics;
 
 namespace ParkerGratis_iOS
 {
@@ -25,6 +26,7 @@ namespace ParkerGratis_iOS
 		UIButton detailButton; // avoid GC
 		private double oldLat;
 		private double oldLong;
+		private DBController _dbController;
 
 		public MapView () : base (UITableViewStyle.Grouped, null)
 		{
@@ -32,6 +34,8 @@ namespace ParkerGratis_iOS
 			initMap ();
 
 			Root = new RootElement ("Overview".translate()) {} ;
+
+			doWelcomeMessage ();
 		}
 
 		protected void initialize() 
@@ -43,6 +47,17 @@ namespace ParkerGratis_iOS
 			};
 
 			_dataLoader = new DataLoader ();
+		}
+
+		private void doWelcomeMessage()
+		{
+			_dbController = new DBController ();
+			var data = _dbController.fetchCommercialData ();
+
+			if (data.Count == 0 || data.First().IntroSeen != 1) {
+				new UIAlertView ("Thank you".translate (), "WelcomeGuide".translate (), null, "OK", null).Show ();
+				_dbController.insertCommData ();
+			}
 		}
 
 		private void initMap()

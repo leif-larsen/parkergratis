@@ -74,6 +74,59 @@ namespace ParkerGratis_iOS
 			} 
 		} // end fetchData
 
+		public bool insertCommData()
+		{
+			var db = new SQLiteConnection(_dbPath);
+			var info = new Commercial_Model { IntroSeen = 1 };
+
+			try {
+
+				List<Commercial_Model> result = fetchCommercialData();
+
+				if (result.Count != 0) {
+					if(result.First().IntroSeen != 1 ){
+						db.Execute("UPDATE Commercial_Model SET IntroSeen = 1 WHERE ID = ?", result.First().ID);
+					}
+				} 
+				else
+					db.Insert(info);
+
+				db.Dispose();
+				db.Close();
+				db = null;
+
+				return true;
+			} catch (Exception ex) {
+				Console.WriteLine (ex.Message);
+
+				db.Close();
+				db = null;
+
+				return false;
+			}
+		} // end insertData
+
+		public List<Commercial_Model> fetchCommercialData()
+		{
+			SQLite.SQLiteConnection db = new SQLiteConnection(_dbPath);
+			List<Commercial_Model> result;
+
+			try {
+				result = db.Query<Commercial_Model>("SELECT * FROM Commercial_Model LIMIT 1");
+				db.Dispose();
+				db.Close ();
+				db = null;
+
+				return result;
+			} catch(Exception ex) {
+				Console.WriteLine (ex.Message);
+				db.Close ();
+				db = null;
+
+				return null;
+			} 
+		}
+
 		private void createDB()
 		{
 			// Create the database and a table to hold Person information.
@@ -81,6 +134,7 @@ namespace ParkerGratis_iOS
 
 			try {
 				conn.CreateTable<LocalInfo>();
+				conn.CreateTable<Commercial_Model>();
 
 				conn.Dispose();
 				conn.Close ();
