@@ -24,6 +24,9 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchI18n>
+    </MtouchI18n>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>full</DebugType>
@@ -92,6 +95,11 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <CodesignProvision>Automatic:AppStore</CodesignProvision>
     <CodesignKey>iPhone Distribution</CodesignKey>
+    <MtouchUseLlvm>true</MtouchUseLlvm>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchI18n>
+    </MtouchI18n>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -134,6 +142,7 @@
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\ParkerGratis_AppIkon58_2X.png" />
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\ParkerGratis_AppIkon57.png" />
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\ParkerGratis_AppIkon29.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\ParkerGratis_AppIkon120.png" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
