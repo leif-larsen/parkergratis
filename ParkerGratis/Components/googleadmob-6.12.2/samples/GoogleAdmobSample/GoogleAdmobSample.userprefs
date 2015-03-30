@@ -1,0 +1,12 @@
+﻿<Properties StartupItem="GoogleAdmobSample/GoogleAdmobSample.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone4s.8.2" />
+  <MonoDevelop.Ide.Workbench>
+    <Files>
+      <File FileName="../../../../ParkerGratis_iOS/AppDelegate.cs" Line="82" Column="6" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

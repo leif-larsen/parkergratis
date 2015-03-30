@@ -1,0 +1,13 @@
+﻿<Properties GitUserInfo="UsingGIT" StartupItem="ParkerGratis_iOS/ParkerGratis_iOS.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone6.8.2" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="ParkerGratis_Android/MainActivity.cs">
+    <Files>
+      <File FileName="ParkerGratis_Android/MainActivity.cs" Line="15" Column="3" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.ParkerGratis__Android AndroidDesignerPreferredDevice="Nexus 4" />
+</Properties>

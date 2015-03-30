@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{C188E8A6-386A-4780-9DB9-9D23B0259C42}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>ParkerGratis</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)ParkingTypes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ParkingInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Calculations.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LocalInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commercial_Model.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Models\" />
+  </ItemGroup>
+</Project>

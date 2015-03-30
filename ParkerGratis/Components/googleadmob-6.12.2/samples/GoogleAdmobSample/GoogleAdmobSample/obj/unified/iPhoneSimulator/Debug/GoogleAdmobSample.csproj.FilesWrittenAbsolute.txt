@@ -1,0 +1,7 @@
+/Users/leiflarsen/lhlucky/parkergratis.git/ParkerGratis/Components/googleadmob-6.12.2/samples/GoogleAdmobSample/GoogleAdmobSample/obj/unified/iPhoneSimulator/Debug/Xamarin.iOS,Version=v1.0.AssemblyAttribute.cs
+/Users/leiflarsen/lhlucky/parkergratis.git/ParkerGratis/Components/googleadmob-6.12.2/samples/GoogleAdmobSample/GoogleAdmobSample/obj/unified/iPhoneSimulator/Debug/Default-568h@2x.png
+/Users/leiflarsen/lhlucky/parkergratis.git/ParkerGratis/Components/googleadmob-6.12.2/samples/GoogleAdmobSample/GoogleAdmobSample/bin/unified/iPhoneSimulator/Debug/GoogleAdmobSample.exe.mdb
+/Users/leiflarsen/lhlucky/parkergratis.git/ParkerGratis/Components/googleadmob-6.12.2/samples/GoogleAdmobSample/GoogleAdmobSample/bin/unified/iPhoneSimulator/Debug/GoogleAdmobSample.exe
+/Users/leiflarsen/lhlucky/parkergratis.git/ParkerGratis/Components/googleadmob-6.12.2/samples/GoogleAdmobSample/GoogleAdmobSample/obj/unified/iPhoneSimulator/Debug/GoogleAdmobSample.exe
+/Users/leiflarsen/lhlucky/parkergratis.git/ParkerGratis/Components/googleadmob-6.12.2/samples/GoogleAdmobSample/GoogleAdmobSample/obj/unified/iPhoneSimulator/Debug/GoogleAdmobSample.exe.mdb
+/Users/leiflarsen/lhlucky/parkergratis.git/ParkerGratis/Components/googleadmob-6.12.2/samples/GoogleAdmobSample/GoogleAdmobSample/bin/unified/iPhoneSimulator/Debug/GoogleAdMobAds.dll

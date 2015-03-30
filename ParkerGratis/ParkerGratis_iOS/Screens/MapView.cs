@@ -26,6 +26,7 @@ namespace ParkerGratis_iOS
 		UIButton detailButton; // avoid GC
 		private double oldLat;
 		private double oldLong;
+		private UIButton _btnCurrentLocation;
 		private DBController _dbController;
 
 		public MapView () : base (UITableViewStyle.Grouped, null)
@@ -67,15 +68,16 @@ namespace ParkerGratis_iOS
 			View.AddSubview (_map);
 
 			_map.ShowsUserLocation = true;
-
+			_map.SetCenterCoordinate (_map.UserLocation.Coordinate, true);
+			addParkingLocations ();
 			_map.DidUpdateUserLocation += (sender, e) => {
 				if (_map.UserLocation != null) {
 
 					if(_dataLoader.getDistanceToParkingSpot(_map.UserLocation.Coordinate.Latitude, _map.UserLocation.Coordinate.Longitude, oldLat, oldLong) > 0.02) {
-						Console.WriteLine ("userloc:"+_map.UserLocation.Coordinate.Latitude + "," + _map.UserLocation.Coordinate.Longitude);
-						CLLocationCoordinate2D coords = _map.UserLocation.Coordinate;
-						MKCoordinateSpan span = new MKCoordinateSpan(Calculations.kmToLatitudeDegrees(1), Calculations.kmToLongitudeDegrees(1, coords.Latitude));
-						_map.Region = new MKCoordinateRegion(coords, span);
+						//Console.WriteLine ("userloc:"+_map.UserLocation.Coordinate.Latitude + "," + _map.UserLocation.Coordinate.Longitude);
+						//CLLocationCoordinate2D coords = _map.UserLocation.Coordinate;
+						//MKCoordinateSpan span = new MKCoordinateSpan(Calculations.kmToLatitudeDegrees(1), Calculations.kmToLongitudeDegrees(1, coords.Latitude));
+						//_map.Region = new MKCoordinateRegion(coords, span);
 						addParkingLocations ();
 					}
 
@@ -91,6 +93,19 @@ namespace ParkerGratis_iOS
 				MKCoordinateSpan span = new MKCoordinateSpan (Calculations.kmToLatitudeDegrees (1), Calculations.kmToLongitudeDegrees (1, coords.Latitude));
 				_map.Region = new MKCoordinateRegion (coords, span);
 			} 
+
+			// Creates and add a button to center on current location
+			var imageCurrentLocation = UIImage.FromBundle ("images/currentloc.png");
+
+			_btnCurrentLocation = UIButton.FromType (UIButtonType.Custom);
+			_btnCurrentLocation.Frame = new RectangleF ((float)View.Frame.Width - 60, (float)View.Frame.Height - 120, 60, 60);
+			_btnCurrentLocation.SetImage (imageCurrentLocation, UIControlState.Normal);
+
+			_btnCurrentLocation.TouchUpInside += (sender, e) => {
+				_map.SetCenterCoordinate(_map.UserLocation.Location.Coordinate, true);
+			};
+
+			View.AddSubview (_btnCurrentLocation);
 
 			_map.GetViewForAnnotation = GetViewForAnnotation;
 		} // End initMap
