@@ -17,7 +17,7 @@ Ldebug_info_begin:
 	.short 2
 	.long 0
 	.byte 4,1
-	.asciz "Mono AOT Compiler 3.12.0 (monotouch-8.6.0-branch/041d473 Fri Mar  6 12:21:48 EST 2015)"
+	.asciz "Mono AOT Compiler 3.12.0 (monotouch-8.6.0-branch/db084a5 Wed Mar 25 14:15:23 EDT 2015)"
 	.asciz "System.Net.Http.dll"
 	.asciz ""
 
@@ -22689,16 +22689,16 @@ extra_method_info_offsets:
 class_name_table:
 
 	.short 109, 0, 0, 0, 0, 2, 0, 53
-	.short 122, 0, 0, 18, 109, 0, 0, 25
-	.short 112, 0, 0, 49, 0, 37, 0, 24
+	.short 0, 0, 0, 18, 109, 0, 0, 25
+	.short 112, 0, 0, 49, 0, 37, 122, 24
 	.short 119, 48, 0, 41, 117, 8, 0, 0
 	.short 0, 0, 0, 0, 0, 3, 0, 64
 	.short 0, 39, 0, 0, 0, 44, 0, 0
 	.short 0, 9, 0, 0, 0, 42, 0, 0
 	.short 0, 0, 0, 0, 0, 26, 0, 0
-	.short 0, 0, 0, 68, 0, 60, 0, 0
+	.short 0, 0, 0, 0, 0, 60, 0, 0
 	.short 0, 40, 0, 0, 0, 35, 0, 45
-	.short 0, 23, 113, 0, 0, 0, 0, 0
+	.short 123, 23, 113, 0, 0, 0, 0, 0
 	.short 0, 34, 0, 1, 0, 7, 0, 0
 	.short 0, 22, 0, 0, 0, 0, 0, 21
 	.short 0, 0, 0, 15, 0, 0, 0, 0
@@ -22718,7 +22718,8 @@ class_name_table:
 	.short 0, 19, 0, 28, 110, 29, 0, 31
 	.short 0, 32, 0, 38, 0, 47, 0, 51
 	.short 0, 54, 0, 55, 120, 59, 0, 61
-	.short 0, 63, 0, 65, 0, 67, 0
+	.short 0, 63, 0, 65, 0, 67, 0, 68
+	.short 0
 .section __TEXT, __const
 	.align 3
 got_info_offsets:
@@ -26822,28 +26823,28 @@ image_table:
 
 	.long 4
 	.asciz "System.Net.Http"
-	.asciz "541FC2DC-BFD2-4B18-83AE-CC45B1F1E0B6"
+	.asciz "1A96301E-7629-4FC4-BDCB-DE5C292009FF"
 	.asciz ""
 	.asciz "b03f5f7f11d50a3a"
 	.align 3
 
 	.long 1,4,0,0,0
 	.asciz "mscorlib"
-	.asciz "D55C1C13-F505-44AE-B439-B357EAE58C0E"
+	.asciz "D0E7BC0B-E91C-4E2D-8D41-9F930710A136"
 	.asciz ""
 	.asciz "7cec85d7bea7798e"
 	.align 3
 
 	.long 1,2,0,5,0
 	.asciz "System"
-	.asciz "6493CB4F-09FA-4F1F-A2BB-96DF2CBBEB00"
+	.asciz "8A6B9CE5-B16C-487B-95F4-A8BA76714145"
 	.asciz ""
 	.asciz "7cec85d7bea7798e"
 	.align 3
 
 	.long 1,2,0,5,0
 	.asciz "System.Core"
-	.asciz "BDB8147E-4154-4189-9697-E29322C00BC5"
+	.asciz "F2EAD272-1172-40F1-B857-58FA9256438C"
 	.asciz ""
 	.asciz "7cec85d7bea7798e"
 	.align 3
@@ -26857,7 +26858,7 @@ got_end:
 .section __TEXT, __const
 	.align 2
 assembly_guid:
-	.asciz "541FC2DC-BFD2-4B18-83AE-CC45B1F1E0B6"
+	.asciz "1A96301E-7629-4FC4-BDCB-DE5C292009FF"
 .section __TEXT, __const
 	.align 2
 runtime_version:

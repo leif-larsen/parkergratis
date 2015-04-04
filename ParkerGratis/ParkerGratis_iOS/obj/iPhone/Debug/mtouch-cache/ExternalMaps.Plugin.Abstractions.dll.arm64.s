@@ -17,7 +17,7 @@ Ldebug_info_begin:
 	.short 2
 	.long 0
 	.byte 8,1
-	.asciz "Mono AOT Compiler 3.12.0 (monotouch-8.6.0-branch/041d473 Fri Mar  6 12:22:24 EST 2015)"
+	.asciz "Mono AOT Compiler 3.12.0 (monotouch-8.6.0-branch/db084a5 Wed Mar 25 14:15:54 EDT 2015)"
 	.asciz "ExternalMaps.Plugin.Abstractions.dll"
 	.asciz ""
 
@@ -208,7 +208,7 @@ image_table:
 
 	.long 0,1,0,4,0
 	.asciz "mscorlib"
-	.asciz "D55C1C13-F505-44AE-B439-B357EAE58C0E"
+	.asciz "D0E7BC0B-E91C-4E2D-8D41-9F930710A136"
 	.asciz ""
 	.asciz "7cec85d7bea7798e"
 	.align 3

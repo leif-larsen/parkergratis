@@ -47,6 +47,7 @@ namespace ParkerGratis_iOS
 			var radioGroup = new RadioGroup (0);
 			var parkingValues = Enum.GetValues (typeof(ParkingTypes));
 			var parkingName = new EntryElement ("Name of parking".translate (), "Parking name".translate(), null);
+			var extraInfo = new EntryElement ("Extra information".translate (), null, null);
 
 			foreach (ParkingTypes value in parkingValues) {
 				string title;
@@ -95,6 +96,7 @@ namespace ParkerGratis_iOS
 						radioSection
 					},
 					otherInfo,
+					extraInfo,
 					new StringElement(String.Format("{0}: {1}", "Latitude".translate(), latitude)),
 					new StringElement(String.Format("{0}: {1}", "Longitude".translate(), longitude))
 				},
@@ -110,13 +112,13 @@ namespace ParkerGratis_iOS
 							// show the loading overlay on the UI thread using the correct orientation sizing
 							_loadingOverlay = new LoadingOverlay ((RectangleF)bounds, "Adding parking...");
 							this.View.Add ( _loadingOverlay );
-							addNewParking(latitude, longitude, otherInfo.Value, radioGroup.Selected, parkingName.Value); 
+							addNewParking(latitude, longitude, otherInfo.Value, radioGroup.Selected, parkingName.Value, extraInfo.Value); 
 						})
 				}
 			};
 		}
 
-		private async void addNewParking(double lat, double longitude, string otherInfo, int parkingType, string name)
+		private async void addNewParking(double lat, double longitude, string otherInfo, int parkingType, string name, string extraInfo)
 		{
 			bool addedToParse = false;
 
@@ -124,7 +126,7 @@ namespace ParkerGratis_iOS
 				if (parkingType == (int)ParkingTypes.other && otherInfo.Equals ("")) {
 					new UIAlertView ("Error".translate (), "If you have selected other as parking type, you need to specify the type in the field below".translate (), null, "OK", null).Show ();
 				} else {
-					addedToParse = await _dataLoader.addNewParking (name, lat, longitude, otherInfo, parkingType); 
+					addedToParse = await _dataLoader.addNewParking (name, lat, longitude, otherInfo, parkingType, extraInfo); 
 					//bool addedToDB = _dbController.insertData (email);
 
 					if (addedToParse) {

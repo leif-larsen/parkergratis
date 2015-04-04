@@ -17,7 +17,7 @@ Ldebug_info_begin:
 	.short 2
 	.long 0
 	.byte 4,1
-	.asciz "Mono AOT Compiler 3.12.0 (monotouch-8.6.0-branch/041d473 Fri Mar  6 12:21:48 EST 2015)"
+	.asciz "Mono AOT Compiler 3.12.0 (monotouch-8.6.0-branch/db084a5 Wed Mar 25 14:15:23 EDT 2015)"
 	.asciz "System.Json.dll"
 	.asciz ""
 
@@ -4993,21 +4993,21 @@ image_table:
 
 	.long 3
 	.asciz "System.Json"
-	.asciz "1BE313FB-32E4-4212-850A-F8698FE78AC9"
+	.asciz "B37FDFFB-8E2B-4F34-890D-BF2981616824"
 	.asciz ""
 	.asciz "31bf3856ad364e35"
 	.align 3
 
 	.long 1,2,0,5,0
 	.asciz "mscorlib"
-	.asciz "D55C1C13-F505-44AE-B439-B357EAE58C0E"
+	.asciz "D0E7BC0B-E91C-4E2D-8D41-9F930710A136"
 	.asciz ""
 	.asciz "7cec85d7bea7798e"
 	.align 3
 
 	.long 1,2,0,5,0
 	.asciz "System"
-	.asciz "6493CB4F-09FA-4F1F-A2BB-96DF2CBBEB00"
+	.asciz "8A6B9CE5-B16C-487B-95F4-A8BA76714145"
 	.asciz ""
 	.asciz "7cec85d7bea7798e"
 	.align 3
@@ -5021,7 +5021,7 @@ got_end:
 .section __TEXT, __const
 	.align 2
 assembly_guid:
-	.asciz "1BE313FB-32E4-4212-850A-F8698FE78AC9"
+	.asciz "B37FDFFB-8E2B-4F34-890D-BF2981616824"
 .section __TEXT, __const
 	.align 2
 runtime_version:
@@ -12696,8 +12696,8 @@ Ldebug_line_start:
 	.long Ldebug_line_header_end - . -4
 	.byte 1,1,251,14,13,0,1,1,1,1,0,0,0,1,0,0,1
 .section __DWARF, __debug_line,regular,debug
-	.asciz "///Library/Frameworks/Xamarin.iOS.framework/Versions/8.6.3.3/src/mono/mcs/class/System.Json/System.Json"
-	.asciz "///Library/Frameworks/Xamarin.iOS.framework/Versions/8.6.3.3/src/mono/mcs/class/System.ServiceModel.Web/System.Runtime.Serialization.Json"
+	.asciz "///Library/Frameworks/Xamarin.iOS.framework/Versions/8.8.2.4/src/mono/mcs/class/System.Json/System.Json"
+	.asciz "///Library/Frameworks/Xamarin.iOS.framework/Versions/8.8.2.4/src/mono/mcs/class/System.ServiceModel.Web/System.Runtime.Serialization.Json"
 	.asciz "/Developer/MonoTouch/Source/mono/mcs/class/corlib/System"
 
 	.byte 0

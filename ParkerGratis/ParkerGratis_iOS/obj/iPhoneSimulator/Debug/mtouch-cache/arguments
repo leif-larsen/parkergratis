@@ -1,6 +1,6 @@
-# Version: 8.8.1.9 (7e1f69e)
+# Version: 8.8.2.4 (981acb3)
 # [first argument, ignore] # /Users/leiflarsen/lhlucky/parkergratis.git/ParkerGratis/ParkerGratis_iOS/mtouch.exe
-/Library/Frameworks/Xamarin.iOS.framework/Versions/8.8.1.9/bin/mtouch-64 \
+/Library/Frameworks/Xamarin.iOS.framework/Versions/8.8.2.4/bin/mtouch-64 \
 	--cache \
 	/Users/leiflarsen/lhlucky/parkergratis.git/ParkerGratis/ParkerGratis_iOS/obj/iPhoneSimulator/Debug/mtouch-cache \
 	--sim \

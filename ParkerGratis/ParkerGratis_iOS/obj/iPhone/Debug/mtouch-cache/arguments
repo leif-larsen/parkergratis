@@ -1,6 +1,6 @@
-# Version: 8.6.3.3 (90e32d0)
+# Version: 8.8.2.4 (981acb3)
 # [first argument, ignore] # /Users/leiflarsen/lhlucky/parkergratis.git/ParkerGratis/ParkerGratis_iOS/mtouch.exe
-/Library/Frameworks/Xamarin.iOS.framework/Versions/8.6.3.3/bin/mtouch-64 \
+/Library/Frameworks/Xamarin.iOS.framework/Versions/8.8.2.4/bin/mtouch-64 \
 	--cache \
 	/Users/leiflarsen/lhlucky/parkergratis.git/ParkerGratis/ParkerGratis_iOS/obj/iPhone/Debug/mtouch-cache \
 	--dev \
@@ -42,6 +42,8 @@
 	../packages/Xam.Plugin.ExternalMaps.1.0.4/lib/Xamarin.iOS10/ExternalMaps.Plugin.Abstractions.dll \
 	-r \
 	../Components/hockeyappios-3.6.2.0/lib/ios-unified/HockeyApp.iOS.dll \
+	-r \
+	../Components/tipoftheday-1.1.1.1/lib/ios-unified/Xamarin.Controls.TipOfTheDay.iOS.dll \
 	-r \
 	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/Xamarin.iOS/System.Core.dll \
 	-r \
@@ -144,4 +146,6 @@
 	../packages/Xam.Plugin.ExternalMaps.1.0.4/lib/Xamarin.iOS10/ExternalMaps.Plugin.Abstractions.dll \
 	-r \
 	../Components/hockeyappios-3.6.2.0/lib/ios-unified/HockeyApp.iOS.dll \
+	-r \
+	../Components/tipoftheday-1.1.1.1/lib/ios-unified/Xamarin.Controls.TipOfTheDay.iOS.dll \
 	/Users/leiflarsen/lhlucky/parkergratis.git/ParkerGratis/ParkerGratis_iOS/bin/iPhone/Debug//ParkerGratis_iOS.exe \

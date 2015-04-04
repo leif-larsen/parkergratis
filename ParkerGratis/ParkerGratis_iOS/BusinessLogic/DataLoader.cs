@@ -28,7 +28,7 @@ namespace ParkerGratis_iOS
 			double locLat = results.Get<ParseGeoPoint>("location").Latitude;
 			double locLong = results.Get<ParseGeoPoint>("location").Longitude;
 
-			return new ParkingInfo (results.Get<string>("name"), results.Get<string> ("address"), results.Get<bool> ("verified"), results.Get<bool> ("reported"), locLat, locLong, _type, results.ObjectId, results.Get<string> ("type_other"));
+			return new ParkingInfo (results.Get<string>("name"), results.Get<string> ("address"), results.Get<bool> ("verified"), results.Get<bool> ("reported"), locLat, locLong, _type, results.ObjectId, results.Get<string> ("type_other"), results.Get<string> ("additionalInfo"));
 		} // end getParkingSpotInfo
 
 		public async Task<bool> verifyParkingSpot(string objId) 
@@ -79,7 +79,7 @@ namespace ParkerGratis_iOS
 			return distanceInKm;
 		} // end getDistanceToParkingSpot
 
-		public async Task<bool> addNewParking(string name, double lat, double longitude, string type_other, int type)
+		public async Task<bool> addNewParking(string name, double lat, double longitude, string type_other, int type, string extraInfo)
 		{
 			try {
 				ParseObject newParking = new ParseObject ("FreeParking");
@@ -92,6 +92,7 @@ namespace ParkerGratis_iOS
 				newParking["nrOfReported"] = 0;
 				newParking["type_other"] = type_other;
 				newParking["type"] = type;
+				newParking["additionalInfo"] = extraInfo;
 				newParking["location"] = new ParseGeoPoint(lat, longitude);
 
 				await newParking.SaveAsync();
@@ -121,7 +122,7 @@ namespace ParkerGratis_iOS
 					int type = parkObj.Get<int>("type");
 					ParkingTypes _type = (ParkingTypes) type;
 
-					_geoList.Add (new ParkingInfo (parkObj.Get<string>("name"), parkObj.Get<string>("address"), parkObj.Get<bool>("verified"), parkObj.Get<bool>("reported"), locLat, locLong, _type, parkObj.ObjectId, parkObj.Get<string>("type_other")));
+					_geoList.Add (new ParkingInfo (parkObj.Get<string>("name"), parkObj.Get<string>("address"), parkObj.Get<bool>("verified"), parkObj.Get<bool>("reported"), locLat, locLong, _type, parkObj.ObjectId, parkObj.Get<string>("type_other"), parkObj.Get<string>("additionalInfo")));
 				}
 			}
 			catch(ParseException e) {

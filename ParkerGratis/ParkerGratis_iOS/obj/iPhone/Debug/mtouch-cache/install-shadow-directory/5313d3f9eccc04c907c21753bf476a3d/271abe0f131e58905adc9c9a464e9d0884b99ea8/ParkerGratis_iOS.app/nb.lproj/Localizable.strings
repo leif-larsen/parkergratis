@@ -1,4 +1,5 @@
-﻿"Park for free" = "Parker gratis";
+﻿CFBundleDisplayName = "Parker gratis";
+"Park for free" = "Parker gratis";
 
 "About the parking" = "Om parkeringen";
 "Type" = "Type";
@@ -52,8 +53,8 @@
 "Something went wrong when verifying this location. Contact the developer for further assistance." = "Noe gikk galt under verifiseringen. Kontakt utvikleren for videre assistanse.";
 "Parking location is now reported." = "Parkeringsplassen har blitt rapportert.";
 "Something went wrong when reporting this location. Contact the developer for further assistance." = "Noe gikk galt under rapporteringen. Kontakt utvikleren for videre assistanse.";
-"Successfully reported" = "Verifisert";
-"Successfully verified" = "Rapportert";
+"Successfully reported" = "Rapportert";
+"Successfully verified" = "Verifisert";
 "Name" = "Navn";
 "Parking name" = "Lokasjonsnavn";
 
@@ -62,3 +63,8 @@
 "No, Thanks" = "Nei takk";
 "Remind Me Later" = "Påminn meg senere";
 "Rate It Now" = "Rangér nå";
+
+"Extra information" = "Tilleggsinformasjon";
+"Thank you" = "Takk";
+"WelcomeGuide" = "Takk for at du lastet ned Parker gratis! I en startfase er vi avhengig av din hjelp til å samle data. Neste gang du benytter en gratis parkeringsplass, gjør den tilgjengelig for andre, ved å legge den til her!";
+"Enter a search query" = "Søk etter sted";

@@ -22,6 +22,7 @@ namespace ParkerGratis_iOS
 		private string _typeDesc;
 		private string _reported;
 		private string _verified;
+		private string _addInfo;
 		private DataLoader _dataLoader;
 		private double _distance;
 		private MKMapView _map;
@@ -44,6 +45,7 @@ namespace ParkerGratis_iOS
 				new Section (_name) {
 					new StringElement (String.Format("{0}: {1}" ,"Type".translate(), _title.translate())),
 					new StringElement (String.Format("{0}: {1}", "Other".translate(), _typeDesc)),
+					new StringElement (String.Format("{0}: {1}", "Extra information".translate(), _addInfo)),
 					new StringElement(String.Format("{0}: {1:N2} km", "Distance".translate(), _distance)),
 					new StringElement (String.Format("{0}: {1}", "Verified".translate(), _verified)),
 					new StringElement (String.Format("{0}: {1}", "Reported".translate(), _reported))
@@ -91,6 +93,7 @@ namespace ParkerGratis_iOS
 			_long = data.Longitude;
 			_typeDesc = data.Subtitle;
 			_distance = _dataLoader.getDistanceToParkingSpot (_map.UserLocation.Coordinate.Latitude, _map.UserLocation.Coordinate.Longitude, data.Latitude, data.Longitude);
+			_addInfo = data.AdditionalInfo;
 
 			if (data.Verified)
 				_verified = "Yes".translate();

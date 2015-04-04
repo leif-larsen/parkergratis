@@ -9,6 +9,7 @@ namespace ParkerGratis
 		private string _title = string.Empty;
 		private string _objId = string.Empty;
 		private string _subtitle = string.Empty;
+		private string _additionalInfo = string.Empty;
 
 		private bool _verified = false;
 		private bool _reported = false;
@@ -18,7 +19,7 @@ namespace ParkerGratis
 
 		private ParkingTypes _type;
 
-		public ParkingInfo (string name, string address, bool verified, bool reported, double latitude, double longitude, ParkingTypes type, string objId, string subtitle)
+		public ParkingInfo (string name, string address, bool verified, bool reported, double latitude, double longitude, ParkingTypes type, string objId, string subtitle, string addInfo)
 		{
 			_name = name;
 			_address = address;
@@ -29,6 +30,7 @@ namespace ParkerGratis
 			_subtitle = subtitle;
 			_objId = objId;
 			_type = type;
+			_additionalInfo = addInfo;
 
 			setTitle ();
 		}
@@ -48,6 +50,8 @@ namespace ParkerGratis
 		public string ObjId { get { return _objId; } } 
 
 		public string Subtitle { get { return _subtitle; } } 
+
+		public string AdditionalInfo { get { return _additionalInfo; } } 
 
 		public string Title { 
 			get { return _title; }

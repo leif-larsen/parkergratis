@@ -161,10 +161,10 @@
     <Compile Include="Screens\NewParkingSpot.cs" />
     <Compile Include="Extensions\Extension.cs" />
     <Compile Include="Screens\MapView.cs" />
-    <Compile Include="BusinessLogic\PickerModel.cs" />
-    <Compile Include="BusinessLogic\PickerChangedEventArgs.cs" />
     <Compile Include="Screens\LoadingOverlay.cs" />
     <Compile Include="BusinessLogic\DBController.cs" />
+    <Compile Include="BusinessLogic\Search\SearchDelegate.cs" />
+    <Compile Include="BusinessLogic\Search\SearchSource.cs" />
   </ItemGroup>
   <Import Project="..\ParkerGratis\ParkerGratis.projitems" Label="Shared" Condition="Exists('..\ParkerGratis\ParkerGratis.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
@@ -174,6 +174,7 @@
     <Folder Include="BusinessLogic\" />
     <Folder Include="Resources\nb.lproj\" />
     <Folder Include="Extensions\" />
+    <Folder Include="BusinessLogic\Search\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default-568h%402x.png" />
@@ -182,6 +183,8 @@
     <BundleResource Include="Resources\images\verified70.png" />
     <BundleResource Include="Resources\images\verified60.png" />
     <BundleResource Include="Resources\images\currentloc.png" />
+    <BundleResource Include="Resources\images\currentloc%402x.png" />
+    <BundleResource Include="Resources\images\verified60%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="sqlite-net">

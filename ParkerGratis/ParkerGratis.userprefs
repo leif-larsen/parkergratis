@@ -1,8 +1,8 @@
 ﻿<Properties GitUserInfo="UsingGIT" StartupItem="ParkerGratis_iOS/ParkerGratis_iOS.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone6.8.2" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ParkerGratis_Android/MainActivity.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ParkerGratis_iOS/Screens/MapView.cs">
     <Files>
-      <File FileName="ParkerGratis_Android/MainActivity.cs" Line="15" Column="3" />
+      <File FileName="ParkerGratis_iOS/Screens/MapView.cs" Line="115" Column="6" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
