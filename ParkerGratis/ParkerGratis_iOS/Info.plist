@@ -5,7 +5,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.leiflarsen.ParkerGratisiOS</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
@@ -54,6 +54,6 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>CFBundleVersion</key>
-	<string>3</string>
+	<string>1</string>
 </dict>
 </plist>
