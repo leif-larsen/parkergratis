@@ -79,7 +79,7 @@ namespace ParkerGratis_iOS
 			return distanceInKm;
 		} // end getDistanceToParkingSpot
 
-		public async Task<bool> addNewParking(string name, double lat, double longitude, string type_other, int type, string extraInfo)
+		public async Task<bool> addNewParking(string name, double lat, double longitude, string type_other, int type, string extraInfo = "")
 		{
 			try {
 				ParseObject newParking = new ParseObject ("FreeParking");

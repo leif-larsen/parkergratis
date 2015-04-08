@@ -20,11 +20,11 @@ namespace ParkerGratis_iOS
 			var localSearch = new MKLocalSearch (searchRequest);
 			localSearch.Start (delegate (MKLocalSearchResponse response, NSError error) {
 				if(response != null && error == null) {
-					Console.WriteLine (response);
+					//Console.WriteLine (response);
 					((SearchSource)controller.SearchResultsSource).mapItems = response.MapItems.ToList();
 					controller.SearchResultsTableView.ReloadData();
 				} else {
-					Console.WriteLine (error);
+					//Console.WriteLine (error);
 				}
 			});
 

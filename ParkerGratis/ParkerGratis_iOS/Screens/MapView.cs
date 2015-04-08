@@ -33,11 +33,13 @@ namespace ParkerGratis_iOS
 
 		public MapView () : base (UITableViewStyle.Grouped, null)
 		{
+			EnableSearch = true;
+			AutoHideSearch = false;
+
 			initialize ();
 			initMap ();
 
 			Root = new RootElement ("Overview".translate()) {} ;
-
 			doWelcomeMessage ();
 		}
 
@@ -48,19 +50,17 @@ namespace ParkerGratis_iOS
 			NavigationItem.RightBarButtonItem.Clicked += (sender, e) => {
 				addNewSpot();
 			};
-
-			NavigationItem.SetLeftBarButtonItem (new UIBarButtonItem (UIBarButtonSystemItem.Search), false);
-			NavigationItem.LeftBarButtonItem.Clicked += (sender, e) => {
-				// create search controller
-				_searchBar = new UISearchBar (new RectangleF (0, 0, (float)View.Frame.Width, 50)) {
-					Placeholder = "Enter a search query".translate()
-				};
-
-				_searchController = new UISearchDisplayController (_searchBar, this);
-				_searchController.Delegate = new SearchDelegate ();
-				_searchController.SearchResultsSource = new SearchSource (_searchController, this);
-				View.AddSubview (_searchBar);
+			 
+			_searchBar = new UISearchBar (new RectangleF(0, 0, (float)View.Frame.Width, 50)) {
+				Placeholder = "Enter a search query".translate(),
+				AutocorrectionType = UITextAutocorrectionType.No,
+				TintColor = UIColor.White
 			};
+
+			_searchController = new UISearchDisplayController (_searchBar, this);
+			_searchController.Delegate = new SearchDelegate ();
+			_searchController.SearchResultsSource = new SearchSource (_searchController, this);
+			View.AddSubview (_searchBar);
 
 			_dataLoader = new DataLoader ();
 		}
@@ -78,7 +78,8 @@ namespace ParkerGratis_iOS
 
 		private void initMap()
 		{
-			_map = new MKMapView (View.Bounds);
+			//_map = new MKMapView (View.Bounds);
+			_map = new MKMapView(new RectangleF(0, 44, (float)View.Frame.Width, (float)View.Frame.Height));
 			_map.AutoresizingMask = UIViewAutoresizing.FlexibleDimensions;
 			View.AddSubview (_map);
 

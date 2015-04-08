@@ -185,6 +185,7 @@
     <BundleResource Include="Resources\images\currentloc.png" />
     <BundleResource Include="Resources\images\currentloc%402x.png" />
     <BundleResource Include="Resources\images\verified60%402x.png" />
+    <BundleResource Include="Resources\images\bgpattern.png" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="sqlite-net">

@@ -19,7 +19,7 @@ namespace ParkerGratis_iOS
 		// class-level declarations
 		UIWindow window;
 		UINavigationController navController;
-		UIViewController rootViewController;
+		MapView rootViewController;
 		private CLLocationManager _locationManager;
 
 		public AppDelegate ()
@@ -63,14 +63,7 @@ namespace ParkerGratis_iOS
 				_locationManager.RequestWhenInUseAuthorization ();
 
 			UIApplication.SharedApplication.SetStatusBarStyle (UIStatusBarStyle.LightContent, false);
-			
-			// If you have defined a root view controller, set it here:
-			// window.RootViewController = myViewController;
-			
-			// make the window visible
-			window.MakeKeyAndVisible ();
 
-			navController = new UINavigationController ();
 			/*
 			// Create our home controller based on the device
 			if (UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone) {
@@ -82,6 +75,8 @@ namespace ParkerGratis_iOS
 			*/
 
 			rootViewController = new MapView ();
+
+			navController = new UINavigationController ();
 
 			// Style the application
 			UINavigationBar.Appearance.BarTintColor = UIColor.FromRGB (0, 122, 255);
