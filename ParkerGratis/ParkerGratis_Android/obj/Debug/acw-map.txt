@@ -1,1 +1,0 @@
-ParkerGratis_Android.MainActivity;parkergratis_android.MainActivity
