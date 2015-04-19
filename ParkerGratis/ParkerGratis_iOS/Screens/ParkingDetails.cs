@@ -45,7 +45,7 @@ namespace ParkerGratis_iOS
 				new Section (_name) {
 					new StringElement (String.Format("{0}: {1}" ,"Type".translate(), _title.translate())),
 					new StringElement (String.Format("{0}: {1}", "Other".translate(), _typeDesc)),
-					new StringElement (String.Format("{0}: {1}", "Extra information".translate(), _addInfo)),
+					new MultilineElement (String.Format("{0}: {1}", "Extra information".translate(), _addInfo)),
 					new StringElement(String.Format("{0}: {1:N2} km", "Distance".translate(), _distance)),
 					new StringElement (String.Format("{0}: {1}", "Verified".translate(), _verified)),
 					new StringElement (String.Format("{0}: {1}", "Reported".translate(), _reported))
