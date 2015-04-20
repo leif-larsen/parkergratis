@@ -2,7 +2,7 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 
-namespace ParkerGratis_Shared
+namespace ParkerGratis_Forms
 {
 	public class MapPage : ContentPage
 	{
@@ -13,21 +13,21 @@ namespace ParkerGratis_Shared
 			_map = new Map {
 				IsShowingUser = true,
 				HeightRequest = 100,
-				WidthRequest = 900,
+				WidthRequest = 960,
 				VerticalOptions = LayoutOptions.FillAndExpand
 			};
 
 			_map.MoveToRegion (new MapSpan (new Position (0, 0), 360, 360));
 
-			// Map style
 			var street = new Button { Text = "Street" };
 			var hybrid = new Button { Text = "Hybrid" };
 			var satellite = new Button { Text = "Satellite" };
-			street.Clicked += handleClicked;
-			hybrid.Clicked += handleClicked;
-			satellite.Clicked += handleClicked;
+			street.Clicked += HandleClicked;
+			hybrid.Clicked += HandleClicked;
+			satellite.Clicked += HandleClicked;
 
-			var segments = new StackLayout { Spacing = 30,
+			var segments = new StackLayout { 
+				Spacing = 30,
 				HorizontalOptions = LayoutOptions.CenterAndExpand,
 				Orientation = StackOrientation.Horizontal,
 				Children = { street, hybrid, satellite }
@@ -36,11 +36,10 @@ namespace ParkerGratis_Shared
 			var stack = new StackLayout { Spacing = 0 };
 			stack.Children.Add (_map);
 			stack.Children.Add (segments);
-
 			Content = stack;
 		}
 
-		private void handleClicked (object sender, EventArgs e)
+		void HandleClicked (object sender, EventArgs e)
 		{
 			var b = sender as Button;
 			switch (b.Text) {

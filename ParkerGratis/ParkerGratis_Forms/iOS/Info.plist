@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDisplayName</key>
-	<string>ParkerGratis_Shared.iOS</string>
+	<string>ParkerGratis_Forms.iOS</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.your-company.ParkerGratis_Shared.iOS</string>
+	<string>com.your-company.ParkerGratis_Forms.iOS</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>

@@ -1,19 +1,20 @@
 ﻿<Properties GitUserInfo="UsingGIT" StartupItem="ParkerGratis_iOS/ParkerGratis_iOS.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone4s.7.1" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="ParkerGratis_Forms/Droid/Properties/AndroidManifest.xml">
     <Files>
-      <File FileName="ParkerGratis_Shared/Pages/MapPage.cs" Line="40" Column="20" />
-      <File FileName="ParkerGratis_Shared/Droid/packages.config" Line="3" Column="55" />
-      <File FileName="ParkerGratis_Shared/Droid/Properties/AndroidManifest.xml" Line="2" Column="70" />
+      <File FileName="ParkerGratis_Forms/Droid/MainActivity.cs" Line="20" Column="52" />
+      <File FileName="ParkerGratis_Forms/Views/MapPage.cs" Line="32" Column="47" />
+      <File FileName="ParkerGratis_Forms/ParkerGratis_Forms.cs" Line="12" Column="29" />
+      <File FileName="ParkerGratis_Forms/Droid/Properties/AndroidManifest.xml" Line="14" Column="12" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True" selected="True">
-          <Node name="ParkerGratis_Shared" expanded="True">
-            <Node name="Pages" expanded="True" />
+        <State expanded="True">
+          <Node name="ParkerGratis" expanded="True" />
+          <Node name="ParkerGratis_Forms" expanded="True">
+            <Node name="Views" expanded="True" />
           </Node>
-          <Node name="ParkerGratis_Shared.Droid" expanded="True">
-            <Node name="Assets" expanded="True" />
+          <Node name="ParkerGratis_Forms.Droid" expanded="True" selected="True">
             <Node name="Properties" expanded="True" />
           </Node>
         </State>

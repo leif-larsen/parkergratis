@@ -5,7 +5,7 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace ParkerGratis_Shared.iOS
+namespace ParkerGratis_Forms.iOS
 {
 	public class Application
 	{

@@ -2,14 +2,14 @@
 
 using Xamarin.Forms;
 
-namespace ParkerGratis_Shared
+namespace ParkerGratis_Forms
 {
 	public class App : Application
 	{
 		public App ()
 		{
 			// The root page of your application
-			MainPage = new MapPage ();
+			MainPage = new MapPage();
 		}
 
 		protected override void OnStart ()
