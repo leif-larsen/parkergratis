@@ -134,3 +134,5 @@
 /Users/leiflarsen/lhlucky/parkergratis.git/ParkerGratis/ParkerGratis_iOS/obj/iPhoneSimulator/Debug/Images/checkmark@2x.png
 /Users/leiflarsen/lhlucky/parkergratis.git/ParkerGratis/ParkerGratis_iOS/bin/iPhoneSimulator/Debug/Xamarin.Controls.TipOfTheDay.iOS.dll
 /Users/leiflarsen/lhlucky/parkergratis.git/ParkerGratis/ParkerGratis_iOS/obj/iPhoneSimulator/Debug/images/currentloc@2x.png
+/Users/leiflarsen/lhlucky/parkergratis.git/ParkerGratis/ParkerGratis_iOS/obj/iPhoneSimulator/Debug/images/verified60@2x.png
+/Users/leiflarsen/lhlucky/parkergratis.git/ParkerGratis/ParkerGratis_iOS/obj/iPhoneSimulator/Debug/images/bgpattern.png

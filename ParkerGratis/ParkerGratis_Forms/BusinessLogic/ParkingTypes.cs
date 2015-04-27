@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ParkerGratis
+namespace ParkerGratis_Forms.BusinessLogic
 {
 	public enum ParkingTypes
 	{
