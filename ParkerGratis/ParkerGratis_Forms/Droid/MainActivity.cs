@@ -8,6 +8,8 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 
+using Acr.UserDialogs;
+
 namespace ParkerGratis_Forms.Droid
 {
 	[Activity (Label = "ParkerGratis_Forms.Droid", Icon = "@drawable/icon", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
@@ -19,6 +21,8 @@ namespace ParkerGratis_Forms.Droid
 
 			global::Xamarin.Forms.Forms.Init (this, bundle);
 			global::Xamarin.FormsMaps.Init (this, bundle);
+
+			UserDialogs.Init (() => (Activity)global::Xamarin.Forms.Forms.Context);
 
 			LoadApplication (new App ());
 		}

@@ -1,7 +1,7 @@
 ﻿using System;
 using SQLite;
 
-namespace ParkerGratis
+namespace ParkerGratis_Forms.Models
 {
 	public class Commercial_Model
 	{

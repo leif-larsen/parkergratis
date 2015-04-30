@@ -1,7 +1,12 @@
 ﻿using System;
+using System.Threading.Tasks;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+
 using Xamarin.Forms;
 
-using ParkerGratis_Forms.BusinessLogic;
+using ParkerGratis_Forms.ViewModels;
+using ParkerGratis_Forms.Models;
 
 namespace ParkerGratis_Forms
 {
@@ -14,6 +19,8 @@ namespace ParkerGratis_Forms
 
 		public NewParkingSpotPage (double latitude, double longitude, string address)
 		{
+			this.BindingContext = new NewParkingSpotViewModel (address, latitude,longitude, this);
+
 			Title = "Parkeringsdetaljer";
 
 			NavigationPage.SetHasNavigationBar (this, true);
@@ -29,24 +36,27 @@ namespace ParkerGratis_Forms
 		{
 			var nameLabel = new Label { Text = "Name" };
 			var nameEntry = new Entry ();
-			nameEntry.SetBinding (Entry.TextProperty, "Name");
+			nameEntry.SetBinding (Entry.TextProperty, "NameEntry");
 
 			var otherInfoLabel = new Label { Text = "Other" };
 			var otherInfoEntry = new Entry ();
-			otherInfoEntry.SetBinding (Entry.TextProperty, "Other");
+			otherInfoEntry.SetBinding (Entry.TextProperty, "OtherInfoEntry");
 
 			var additionalInfoLabel = new Label { Text = "Additional Information" };
 			var additionalInfoEntry = new Entry ();
-			additionalInfoEntry.SetBinding (Entry.TextProperty, "Additional information");
+			additionalInfoEntry.SetBinding (Entry.TextProperty, "AdditionalInfoEntry");
 
 			var addressLabel = new Label { Text = "Address" };
-			var addressLabelAdr = new Label { Text = _address };
+			var addressLabelAdr = new Label ();
+			addressLabelAdr.SetBinding (Label.TextProperty, "Address");
 
 			var latLabel = new Label { Text = "Latitude" };
-			var latLabelLat = new Label { Text = _latitude.ToString () };
+			var latLabelLat = new Label();
+			latLabelLat.SetBinding (Label.TextProperty, "LatitudeString");
 
 			var longLabel = new Label { Text = "Longitude" };
-			var longLabelLong = new Label { Text = _longitude.ToString () };
+			var longLabelLong = new Label ();
+			longLabelLong.SetBinding (Label.TextProperty, "LongitudeString");
 
 			var parkingTypeLabel = new Label { Text = "Parking types" };
 			var parkingValues = Enum.GetValues (typeof(ParkingTypes));
@@ -54,6 +64,7 @@ namespace ParkerGratis_Forms
 				Title = "Parking type",
 				VerticalOptions = LayoutOptions.CenterAndExpand
 			};
+			parkingType.SetBinding (Picker.SelectedIndexProperty, "ParkingTypeSelected");
 
 			foreach (ParkingTypes value in parkingValues) {
 				string title;
@@ -95,10 +106,15 @@ namespace ParkerGratis_Forms
 			}
 
 			var addButton = new Button { Text = "Add new location" };
-			addButton.Clicked += (sender, e) => {
-				DisplayAlert("Test", "Successfully added parking spot", "OK");
-				this.Navigation.PopAsync();
+			addButton.SetBinding (Button.CommandProperty, "AddParkingSpotCommand");
+
+			var activityIndicator = new ActivityIndicator {
+				Color = Color.Blue,
+				VerticalOptions = LayoutOptions.CenterAndExpand,
+				HorizontalOptions = LayoutOptions.CenterAndExpand,
 			};
+			activityIndicator.SetBinding (ActivityIndicator.IsRunningProperty, "IsBusy");
+			activityIndicator.SetBinding (ActivityIndicator.IsVisibleProperty, "IsBusy");
 
 			Content = new StackLayout {
 				VerticalOptions = LayoutOptions.StartAndExpand,
@@ -107,6 +123,7 @@ namespace ParkerGratis_Forms
 					nameLabel, nameEntry,
 					parkingTypeLabel, parkingType,
 					otherInfoLabel, otherInfoEntry,
+					activityIndicator,
 					additionalInfoLabel, additionalInfoEntry, 
 					addressLabel, addressLabelAdr,
 					latLabel, latLabelLat,
@@ -115,11 +132,6 @@ namespace ParkerGratis_Forms
 				}
 			};
 		} // end initGui
-
-		private async void addNewParking(double lat, double longitude, string otherInfo, int parkingType, string name, string extraInfo) 
-		{
-			
-		} // end addNewParking
 	}
 }
 

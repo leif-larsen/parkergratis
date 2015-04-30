@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ParkerGratis_Forms.BusinessLogic
+namespace ParkerGratis_Forms.Models
 {
 	public class ParkingInfo
 	{
