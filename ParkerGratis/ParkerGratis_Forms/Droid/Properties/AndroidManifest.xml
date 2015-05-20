@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="org.leiflarsen.parkergratis.android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="org.leiflarsen.parkergratis.android" android:versionCode="1">
 	<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="21" />
 	<application android:label="Parker gratis">
 		<meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyDBROFWtWBhPnf_cOBtK5PT3F9-zF3ifZg" />
@@ -11,4 +11,6 @@
 	<uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 </manifest>

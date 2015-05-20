@@ -8,7 +8,7 @@ using ParkerGratis_Forms.BusinessLogic;
 using ParkerGratis_Forms.Pages;
 using System.Drawing;
 
-using Google.Maps;
+using ParkerGratis_Forms.iOS.Helpers;
 
 [assembly:ExportRenderer(typeof(ParkerGratis_Forms.Pages.NativeMapPage), typeof(ParkerGratis_Forms_iOS.iOS.MapPageRenderer))]
 
@@ -25,6 +25,8 @@ namespace ParkerGratis_Forms_iOS.iOS
 		protected string annotationIdentifier = "ParkingAnnotation";
 		private UISearchDisplayController _searchController;
 		public MKMapView Map { get { return _map; } private set { } }
+		private bool firstTimeOpen = false;
+		private bool _mapDraggedFromPin = false;
 
 		protected override void OnElementChanged (VisualElementChangedEventArgs e)
 		{
@@ -38,14 +40,26 @@ namespace ParkerGratis_Forms_iOS.iOS
 
 		private void initGui(UIView view)
 		{
-			_map = new MKMapView(new RectangleF(0, 44, (float)View.Frame.Width, (float)View.Frame.Height));
+			//_map = new MKMapView(new RectangleF(0, 44, (float)View.Frame.Width, (float)View.Frame.Height));
+			_map = new MKMapView(View.Bounds);
 			_map.AutoresizingMask = UIViewAutoresizing.FlexibleDimensions;
 			_map.GetViewForAnnotation = GetViewForAnnotation;
-			view.AddSubview (_map);
 			_map.RegionChanged += _map_ChangedDragState;
+			_map.ChangedDragState += centerPinChanged;
+			view.AddSubview (_map);
 
 			_map.ShowsUserLocation = true;
 			_map.SetCenterCoordinate (_map.UserLocation.Coordinate, true);
+
+			_map.DidUpdateUserLocation += (sender, e) => {
+				if (_map.UserLocation != null) {
+					addParkingLocations (_map.UserLocation.Coordinate.Latitude, _map.UserLocation.Coordinate.Longitude, 5.00);
+					if(!firstTimeOpen) {
+						_map.SetCenterCoordinate(_map.UserLocation.Location.Coordinate, true);
+						firstTimeOpen = true;
+					}
+				}
+			};
 
 			if (!_map.UserLocationVisible) {
 				// user denied permission, or device doesn't have GPS/location ability
@@ -55,29 +69,47 @@ namespace ParkerGratis_Forms_iOS.iOS
 				_map.Region = new MKCoordinateRegion (coords, span);
 			}
 
-			getCenterCoords ();
+			int typesWidth=180, typesHeight=30, distanceFromBottom=60;
+			var mapTypes = new UISegmentedControl(new RectangleF(((float)View.Bounds.Width-typesWidth)/2, (float)View.Bounds.Height-distanceFromBottom, typesWidth, typesHeight));
+			mapTypes.InsertSegment("Road", 0, false);
+			mapTypes.InsertSegment("Hybrid", 1, false);
+			mapTypes.SelectedSegment = 0; // Road is the default
+			mapTypes.AutoresizingMask = UIViewAutoresizing.FlexibleTopMargin;
+			mapTypes.ValueChanged += (s, e) => {
+				switch(mapTypes.SelectedSegment) {
+				case 0:
+					_map.MapType = MKMapType.Standard;
+					break;
+				case 1:
+					_map.MapType = MKMapType.Hybrid;
+					break;
+				}
+			};
 
+			View.AddSubview (mapTypes);
 			// Creates and add a button to center on current location
 			var imageCurrentLocation = UIImage.FromBundle ("images/currentloc.png");
 
 			_btnCurrentLocation = UIButton.FromType (UIButtonType.Custom);
-			_btnCurrentLocation.Frame = new RectangleF ((float)View.Frame.Width - 80, (float)View.Frame.Height - 140, 60, 60);
+			_btnCurrentLocation.Frame = new RectangleF ((float)View.Frame.Width - 60, (float)View.Frame.Height - 135, 60, 60);
 			_btnCurrentLocation.SetImage (imageCurrentLocation, UIControlState.Normal);
 
 			_btnCurrentLocation.TouchUpInside += (sender, e) => {
-				//addParkingLocations (_map.UserLocation.Coordinate.Latitude, _map.UserLocation.Coordinate.Longitude, 5.00);
+				addParkingLocations (_map.UserLocation.Location.Coordinate.Latitude, _map.UserLocation.Coordinate.Longitude, 5.00);
 				_map.SetCenterCoordinate(_map.UserLocation.Location.Coordinate, true);
 			};
 
 			view.AddSubview (_btnCurrentLocation);
 
-			_searchBar = new UISearchBar(new RectangleF(0,0, (float)view.Frame.Width, 50)) {
-				Placeholder = "Enter a search query",
+			_searchBar = new UISearchBar(new RectangleF(0,0, (float)View.Frame.Width, 50)) {
+				Placeholder = _page.SearchBarPlaceHolder,
 				AutocorrectionType = UITextAutocorrectionType.No,
-				TintColor = UIColor.White
+				BackgroundColor = UIColor.White
+				//TintColor = UIColor.White
 			};
-			_searchBar.SearchBarStyle = UISearchBarStyle.Minimal;
 
+			_searchBar.SearchBarStyle = UISearchBarStyle.Minimal;
+			_searchBar.SizeToFit ();
 			_searchController = new UISearchDisplayController (_searchBar, this);
 			_searchController.Delegate = new SearchDelegate ();
 			_searchController.SearchResultsSource = new SearchSource (_searchController, this);
@@ -86,6 +118,18 @@ namespace ParkerGratis_Forms_iOS.iOS
 
 		private void _map_ChangedDragState (object sender, MKMapViewChangeEventArgs e)
 		{
+			if (!_mapDraggedFromPin) {
+				regenCenterPin (_map.CenterCoordinate);
+				getCenterCoords ();
+			} 
+
+			_mapDraggedFromPin = false;
+			addParkingLocations (_map.CenterCoordinate.Latitude, _map.CenterCoordinate.Longitude, 5.00);
+		}
+
+		private async void regenCenterPin(CLLocationCoordinate2D coords)
+		{
+			var address = await _page.getCurrentAddress ();
 			if (_centerPin != null) {
 				_map.RemoveAnnotation (_centerPin);
 				_centerPin = null;
@@ -94,13 +138,12 @@ namespace ParkerGratis_Forms_iOS.iOS
 			if (_centerPin == null) {
 				_centerPin = new MKPointAnnotation {
 					Title = _page.centerPinText,
+					Coordinate=  coords,
+					Subtitle = address.ToString()
 				};
-				_centerPin.SetCoordinate (_map.CenterCoordinate);
 
 				_map.AddAnnotation (_centerPin);
 			}
-
-			getCenterCoords ();
 		}
 
 		private void getCenterCoords()
@@ -109,12 +152,32 @@ namespace ParkerGratis_Forms_iOS.iOS
 			_page.centerLongitude = _map.CenterCoordinate.Longitude;
 		}
 
-		private void showDetails()//ParkingAnnotation annotation)
+		private void centerPinChanged(object sender, MKMapViewDragStateEventArgs e)
 		{
-			//_parkingDetails = new ParkingDetails (annotation.ObjId, _map);
+			if (e.OldState == MKAnnotationViewDragState.Ending) {
+				var loc = (MKPointAnnotation)e.AnnotationView.Annotation;
+				_page.centerLatitude = loc.Coordinate.Latitude;
+				_page.centerLongitude = loc.Coordinate.Longitude;
+				regenCenterPin (new CLLocationCoordinate2D(loc.Coordinate.Latitude, loc.Coordinate.Longitude));
+				_mapDraggedFromPin = true;
+			}
+		}
 
-			//NavigationController.PushViewController (_parkingDetails, true);
-		} // end ShowDetails
+		public async void addParkingLocations(double latitude, double longitude, double distance)
+		{
+			_page.Distance = distance;
+			_page.CurrentLatitude = latitude;
+			_page.CurrentLongitude = longitude;
+
+			var parkingLocations = await _page.updateParkingLocations ();
+
+			if(parkingLocations != null) {
+				foreach (var parkingLoc in parkingLocations) {
+					var annotation = new ParkingAnnotation (parkingLoc.Name, new CLLocationCoordinate2D (parkingLoc.Latitude, parkingLoc.Longitude), parkingLoc.Title, parkingLoc.ObjId, parkingLoc.Verified);
+					_map.AddAnnotation (annotation);
+				}
+			}
+		} // end addParkingLocations
 
 		MKAnnotationView GetViewForAnnotation(MKMapView mapView, IMKAnnotation annotation)
 		{
@@ -131,27 +194,29 @@ namespace ParkerGratis_Forms_iOS.iOS
 			else
 				annotationView.Annotation = annotation;
 
-			_detailButton = UIButton.FromType (UIButtonType.DetailDisclosure);
-			if (annotationLoc.Latitude == _map.CenterCoordinate.Latitude && annotationLoc.Longitude == _map.CenterCoordinate.Longitude) {
-				(annotationView as MKPinAnnotationView).AnimatesDrop = false;
-				(annotationView as MKPinAnnotationView).PinColor = MKPinAnnotationColor.Green;
 
-				annotationView.RightCalloutAccessoryView = new UIImageView(UIImage.FromBundle ("images/plus.png"));
+			(annotationView as MKPinAnnotationView).AnimatesDrop = false;
+			annotationView.Selected = true;
+
+			if ((annotationLoc.Latitude == _map.CenterCoordinate.Latitude && annotationLoc.Longitude == _map.CenterCoordinate.Longitude) 
+				|| (annotationLoc.Latitude == _page.centerLatitude && annotationLoc.Longitude == _page.centerLongitude)) {
+				(annotationView as MKPinAnnotationView).PinColor = MKPinAnnotationColor.Green;
+				annotationView.CanShowCallout = true;
+				annotationView.Draggable = true;
+
+				_detailButton = UIButton.FromType (UIButtonType.ContactAdd);
 
 				_detailButton.TouchUpInside += (sender, e) => {
 					_page.addNewParking();
 				};
-
-				annotationView.Selected = true;
 			} else {
 				annotationView.CanShowCallout = true;
-				(annotationView as MKPinAnnotationView).AnimatesDrop = false;
 				(annotationView as MKPinAnnotationView).PinColor = MKPinAnnotationColor.Red;
-				annotationView.Selected = true;
 
-
+				_detailButton = UIButton.FromType (UIButtonType.DetailDisclosure);
 				_detailButton.TouchUpInside += (sender, e) => {
-					//showDetails ((ParkingAnnotation)annotation);
+					_page.ObjId = ((ParkingAnnotation)annotation).ObjId;
+					_page.showParkingDetail();
 				};
 			}
 

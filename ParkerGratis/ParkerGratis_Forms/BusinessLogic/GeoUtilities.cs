@@ -7,7 +7,7 @@ namespace ParkerGratis_Forms.BusinessLogic
 {
 	public class GeoUtilities
 	{
-		public double kmToLatitudeDegrees(double kms)
+		public static double kmToLatitudeDegrees(double kms)
 		{
 			double earthRadius = 6371.0; 
 			double radiansToDegrees = 180.0 / Math.PI;
@@ -15,7 +15,7 @@ namespace ParkerGratis_Forms.BusinessLogic
 			return (kms / earthRadius) * radiansToDegrees;
 		} // end kmToLatitutdeDegrees
 
-		public double kmToLongitudeDegrees(double kms, double atLatitude)
+		public static double kmToLongitudeDegrees(double kms, double atLatitude)
 		{
 			double earthRadius = 6371.0; // in kms
 			double degreesToRadians = Math.PI/180.0;

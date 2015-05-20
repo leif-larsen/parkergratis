@@ -104,6 +104,19 @@ namespace ParkerGratis_Forms.Droid
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahText = global::ParkerGratis_Forms.Droid.Resource.Styleable.ProgressWheel_ahText;
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextColor = global::ParkerGratis_Forms.Droid.Resource.Styleable.ProgressWheel_ahTextColor;
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextSize = global::ParkerGratis_Forms.Droid.Resource.Styleable.ProgressWheel_ahTextSize;
+			global::Acr.XamForms.Mobile.Droid.Resource.String.ApplicationName = global::ParkerGratis_Forms.Droid.Resource.String.ApplicationName;
+			global::Acr.XamForms.Mobile.Droid.Resource.String.Hello = global::ParkerGratis_Forms.Droid.Resource.String.Hello;
+			global::AuditApp.Android.Resource.Id.intercept_suggestion_comment = global::ParkerGratis_Forms.Droid.Resource.Id.intercept_suggestion_comment;
+			global::AuditApp.Android.Resource.Id.intercept_suggestion_done = global::ParkerGratis_Forms.Droid.Resource.Id.intercept_suggestion_done;
+			global::AuditApp.Android.Resource.Id.intercept_suggestion_header = global::ParkerGratis_Forms.Droid.Resource.Id.intercept_suggestion_header;
+			global::AuditApp.Android.Resource.Id.intercept_suggestion_id = global::ParkerGratis_Forms.Droid.Resource.Id.intercept_suggestion_id;
+			global::AuditApp.Android.Resource.Layout.intercept_suggestion_layout = global::ParkerGratis_Forms.Droid.Resource.Layout.intercept_suggestion_layout;
+			global::AuditApp.Android.Resource.String.library_name = global::ParkerGratis_Forms.Droid.Resource.String.library_name;
+			global::AuditApp.Android.Resource.Style.intercept_suggestion_background = global::ParkerGratis_Forms.Droid.Resource.Style.intercept_suggestion_background;
+			global::AuditApp.Android.Resource.Style.intercept_suggestion_commentstyle = global::ParkerGratis_Forms.Droid.Resource.Style.intercept_suggestion_commentstyle;
+			global::AuditApp.Android.Resource.Style.intercept_suggestion_donebuttonstyle = global::ParkerGratis_Forms.Droid.Resource.Style.intercept_suggestion_donebuttonstyle;
+			global::AuditApp.Android.Resource.Style.intercept_suggestion_headerstyle = global::ParkerGratis_Forms.Droid.Resource.Style.intercept_suggestion_headerstyle;
+			global::AuditApp.Android.Resource.Style.intercept_suggestion_idstyle = global::ParkerGratis_Forms.Droid.Resource.Style.intercept_suggestion_idstyle;
 		}
 		
 		public partial class Animation
@@ -1804,55 +1817,52 @@ namespace ParkerGratis_Forms.Droid
 			public const int icon = 2130837617;
 			
 			// aapt resource value: 0x7f020072
-			public const int monoandroidsplash = 2130837618;
+			public const int mr_ic_audio_vol = 2130837618;
 			
 			// aapt resource value: 0x7f020073
-			public const int mr_ic_audio_vol = 2130837619;
+			public const int mr_ic_media_route_connecting_mono_dark = 2130837619;
 			
 			// aapt resource value: 0x7f020074
-			public const int mr_ic_media_route_connecting_mono_dark = 2130837620;
+			public const int mr_ic_media_route_connecting_mono_light = 2130837620;
 			
 			// aapt resource value: 0x7f020075
-			public const int mr_ic_media_route_connecting_mono_light = 2130837621;
+			public const int mr_ic_media_route_mono_dark = 2130837621;
 			
 			// aapt resource value: 0x7f020076
-			public const int mr_ic_media_route_mono_dark = 2130837622;
+			public const int mr_ic_media_route_mono_light = 2130837622;
 			
 			// aapt resource value: 0x7f020077
-			public const int mr_ic_media_route_mono_light = 2130837623;
+			public const int mr_ic_pause_dark = 2130837623;
 			
 			// aapt resource value: 0x7f020078
-			public const int mr_ic_pause_dark = 2130837624;
+			public const int mr_ic_pause_light = 2130837624;
 			
 			// aapt resource value: 0x7f020079
-			public const int mr_ic_pause_light = 2130837625;
+			public const int mr_ic_play_dark = 2130837625;
 			
 			// aapt resource value: 0x7f02007a
-			public const int mr_ic_play_dark = 2130837626;
+			public const int mr_ic_play_light = 2130837626;
 			
 			// aapt resource value: 0x7f02007b
-			public const int mr_ic_play_light = 2130837627;
+			public const int mr_ic_settings_dark = 2130837627;
 			
 			// aapt resource value: 0x7f02007c
-			public const int mr_ic_settings_dark = 2130837628;
+			public const int mr_ic_settings_light = 2130837628;
 			
 			// aapt resource value: 0x7f02007d
-			public const int mr_ic_settings_light = 2130837629;
+			public const int plus = 2130837629;
 			
 			// aapt resource value: 0x7f02007e
-			public const int plus = 2130837630;
+			public const int powered_by_google_dark = 2130837630;
 			
 			// aapt resource value: 0x7f02007f
-			public const int powered_by_google_dark = 2130837631;
+			public const int powered_by_google_light = 2130837631;
 			
 			// aapt resource value: 0x7f020080
-			public const int powered_by_google_light = 2130837632;
+			public const int roundedbg = 2130837632;
 			
 			// aapt resource value: 0x7f020081
-			public const int roundedbg = 2130837633;
-			
-			// aapt resource value: 0x7f020082
-			public const int roundedbgdark = 2130837634;
+			public const int roundedbgdark = 2130837633;
 			
 			static Drawable()
 			{
@@ -1922,7 +1932,10 @@ namespace ParkerGratis_Forms.Droid
 			public const int always = 2131427350;
 			
 			// aapt resource value: 0x7f0b006d
-			public const int art = 2131427437;
+			public const int animateButton = 2131427437;
+			
+			// aapt resource value: 0x7f0b0075
+			public const int art = 2131427445;
 			
 			// aapt resource value: 0x7f0b0013
 			public const int beginning = 2131427347;
@@ -1933,8 +1946,8 @@ namespace ParkerGratis_Forms.Droid
 			// aapt resource value: 0x7f0b004a
 			public const int buttonPanel = 2131427402;
 			
-			// aapt resource value: 0x7f0b0071
-			public const int buttons = 2131427441;
+			// aapt resource value: 0x7f0b0079
+			public const int buttons = 2131427449;
 			
 			// aapt resource value: 0x7f0b002d
 			public const int buyButton = 2131427373;
@@ -1969,8 +1982,8 @@ namespace ParkerGratis_Forms.Droid
 			// aapt resource value: 0x7f0b003d
 			public const int default_activity_button = 2131427389;
 			
-			// aapt resource value: 0x7f0b006c
-			public const int default_control_frame = 2131427436;
+			// aapt resource value: 0x7f0b0074
+			public const int default_control_frame = 2131427444;
 			
 			// aapt resource value: 0x7f0b001b
 			public const int dialog = 2131427355;
@@ -1978,8 +1991,8 @@ namespace ParkerGratis_Forms.Droid
 			// aapt resource value: 0x7f0b000c
 			public const int disableHome = 2131427340;
 			
-			// aapt resource value: 0x7f0b0072
-			public const int disconnect = 2131427442;
+			// aapt resource value: 0x7f0b007a
+			public const int disconnect = 2131427450;
 			
 			// aapt resource value: 0x7f0b0033
 			public const int donate_with_google = 2131427379;
@@ -2026,29 +2039,44 @@ namespace ParkerGratis_Forms.Droid
 			// aapt resource value: 0x7f0b003c
 			public const int image = 2131427388;
 			
+			// aapt resource value: 0x7f0b0065
+			public const int intercept_suggestion_comment = 2131427429;
+			
+			// aapt resource value: 0x7f0b0066
+			public const int intercept_suggestion_done = 2131427430;
+			
+			// aapt resource value: 0x7f0b0063
+			public const int intercept_suggestion_header = 2131427427;
+			
+			// aapt resource value: 0x7f0b0064
+			public const int intercept_suggestion_id = 2131427428;
+			
 			// aapt resource value: 0x7f0b0009
 			public const int listMode = 2131427337;
 			
 			// aapt resource value: 0x7f0b003e
 			public const int list_item = 2131427390;
 			
-			// aapt resource value: 0x7f0b0065
-			public const int loadingImage = 2131427429;
+			// aapt resource value: 0x7f0b0069
+			public const int loadingImage = 2131427433;
 			
-			// aapt resource value: 0x7f0b0063
-			public const int loadingProgressBar = 2131427427;
+			// aapt resource value: 0x7f0b0067
+			public const int loadingProgressBar = 2131427431;
 			
-			// aapt resource value: 0x7f0b0066
-			public const int loadingProgressWheel = 2131427430;
+			// aapt resource value: 0x7f0b006a
+			public const int loadingProgressWheel = 2131427434;
+			
+			// aapt resource value: 0x7f0b006e
+			public const int map = 2131427438;
 			
 			// aapt resource value: 0x7f0b002f
 			public const int match_parent = 2131427375;
 			
-			// aapt resource value: 0x7f0b006b
-			public const int media_route_control_frame = 2131427435;
+			// aapt resource value: 0x7f0b0073
+			public const int media_route_control_frame = 2131427443;
 			
-			// aapt resource value: 0x7f0b0067
-			public const int media_route_list = 2131427431;
+			// aapt resource value: 0x7f0b006f
+			public const int media_route_list = 2131427439;
 			
 			// aapt resource value: 0x7f0b0015
 			public const int middle = 2131427349;
@@ -2071,8 +2099,8 @@ namespace ParkerGratis_Forms.Droid
 			// aapt resource value: 0x7f0b0041
 			public const int parentPanel = 2131427393;
 			
-			// aapt resource value: 0x7f0b006e
-			public const int play_pause = 2131427438;
+			// aapt resource value: 0x7f0b0076
+			public const int play_pause = 2131427446;
 			
 			// aapt resource value: 0x7f0b002a
 			public const int production = 2131427370;
@@ -2086,8 +2114,8 @@ namespace ParkerGratis_Forms.Droid
 			// aapt resource value: 0x7f0b004e
 			public const int radio = 2131427406;
 			
-			// aapt resource value: 0x7f0b0069
-			public const int route_name = 2131427433;
+			// aapt resource value: 0x7f0b0071
+			public const int route_name = 2131427441;
 			
 			// aapt resource value: 0x7f0b002b
 			public const int sandbox = 2131427371;
@@ -2137,8 +2165,8 @@ namespace ParkerGratis_Forms.Droid
 			// aapt resource value: 0x7f0b002e
 			public const int selectionDetails = 2131427374;
 			
-			// aapt resource value: 0x7f0b006a
-			public const int settings = 2131427434;
+			// aapt resource value: 0x7f0b0072
+			public const int settings = 2131427442;
 			
 			// aapt resource value: 0x7f0b004d
 			public const int shortcut = 2131427405;
@@ -2164,8 +2192,8 @@ namespace ParkerGratis_Forms.Droid
 			// aapt resource value: 0x7f0b0022
 			public const int src_over = 2131427362;
 			
-			// aapt resource value: 0x7f0b0073
-			public const int stop = 2131427443;
+			// aapt resource value: 0x7f0b007b
+			public const int stop = 2131427451;
 			
 			// aapt resource value: 0x7f0b002c
 			public const int strict_sandbox = 2131427372;
@@ -2173,8 +2201,8 @@ namespace ParkerGratis_Forms.Droid
 			// aapt resource value: 0x7f0b005f
 			public const int submit_area = 2131427423;
 			
-			// aapt resource value: 0x7f0b0070
-			public const int subtitle = 2131427440;
+			// aapt resource value: 0x7f0b0078
+			public const int subtitle = 2131427448;
 			
 			// aapt resource value: 0x7f0b000b
 			public const int tabMode = 2131427339;
@@ -2185,17 +2213,17 @@ namespace ParkerGratis_Forms.Droid
 			// aapt resource value: 0x7f0b0047
 			public const int textSpacerNoButtons = 2131427399;
 			
-			// aapt resource value: 0x7f0b0064
-			public const int textViewStatus = 2131427428;
+			// aapt resource value: 0x7f0b0068
+			public const int textViewStatus = 2131427432;
 			
-			// aapt resource value: 0x7f0b006f
-			public const int text_wrapper = 2131427439;
+			// aapt resource value: 0x7f0b0077
+			public const int text_wrapper = 2131427447;
 			
 			// aapt resource value: 0x7f0b0040
 			public const int title = 2131427392;
 			
-			// aapt resource value: 0x7f0b0068
-			public const int title_bar = 2131427432;
+			// aapt resource value: 0x7f0b0070
+			public const int title_bar = 2131427440;
 			
 			// aapt resource value: 0x7f0b0043
 			public const int title_template = 2131427395;
@@ -2214,6 +2242,12 @@ namespace ParkerGratis_Forms.Droid
 			
 			// aapt resource value: 0x7f0b001d
 			public const int wrap_content = 2131427357;
+			
+			// aapt resource value: 0x7f0b006b
+			public const int zoomInButton = 2131427435;
+			
+			// aapt resource value: 0x7f0b006c
+			public const int zoomOutButton = 2131427436;
 			
 			static Id()
 			{
@@ -2329,34 +2363,40 @@ namespace ParkerGratis_Forms.Droid
 			public const int abc_simple_dropdown_hint = 2130903064;
 			
 			// aapt resource value: 0x7f030019
-			public const int loading = 2130903065;
+			public const int intercept_suggestion_layout = 2130903065;
 			
 			// aapt resource value: 0x7f03001a
-			public const int loadingimage = 2130903066;
+			public const int loading = 2130903066;
 			
 			// aapt resource value: 0x7f03001b
-			public const int loadingprogress = 2130903067;
+			public const int loadingimage = 2130903067;
 			
 			// aapt resource value: 0x7f03001c
-			public const int mr_media_route_chooser_dialog = 2130903068;
+			public const int loadingprogress = 2130903068;
 			
 			// aapt resource value: 0x7f03001d
-			public const int mr_media_route_controller_material_dialog_b = 2130903069;
+			public const int MapLayout = 2130903069;
 			
 			// aapt resource value: 0x7f03001e
-			public const int mr_media_route_list_item = 2130903070;
+			public const int mr_media_route_chooser_dialog = 2130903070;
 			
 			// aapt resource value: 0x7f03001f
-			public const int select_dialog_item_material = 2130903071;
+			public const int mr_media_route_controller_material_dialog_b = 2130903071;
 			
 			// aapt resource value: 0x7f030020
-			public const int select_dialog_multichoice_material = 2130903072;
+			public const int mr_media_route_list_item = 2130903072;
 			
 			// aapt resource value: 0x7f030021
-			public const int select_dialog_singlechoice_material = 2130903073;
+			public const int select_dialog_item_material = 2130903073;
 			
 			// aapt resource value: 0x7f030022
-			public const int support_simple_spinner_dropdown_item = 2130903074;
+			public const int select_dialog_multichoice_material = 2130903074;
+			
+			// aapt resource value: 0x7f030023
+			public const int select_dialog_singlechoice_material = 2130903075;
+			
+			// aapt resource value: 0x7f030024
+			public const int support_simple_spinner_dropdown_item = 2130903076;
 			
 			static Layout()
 			{
@@ -2991,9 +3031,6 @@ namespace ParkerGratis_Forms.Droid
 			// aapt resource value: 0x7f080081
 			public const int Base_Widget_AppCompat_Toolbar_Button_Navigation = 2131230849;
 			
-			// aapt resource value: 0x7f080124
-			public const int Mono_Android_Theme_Splash = 2131231012;
-			
 			// aapt resource value: 0x7f080082
 			public const int Platform_AppCompat = 2131230850;
 			
@@ -3473,6 +3510,21 @@ namespace ParkerGratis_Forms.Droid
 			
 			// aapt resource value: 0x7f080003
 			public const int Widget_MediaRouter_MediaRouteButton = 2131230723;
+			
+			// aapt resource value: 0x7f080128
+			public const int intercept_suggestion_background = 2131231016;
+			
+			// aapt resource value: 0x7f080125
+			public const int intercept_suggestion_commentstyle = 2131231013;
+			
+			// aapt resource value: 0x7f080126
+			public const int intercept_suggestion_donebuttonstyle = 2131231014;
+			
+			// aapt resource value: 0x7f080124
+			public const int intercept_suggestion_headerstyle = 2131231012;
+			
+			// aapt resource value: 0x7f080127
+			public const int intercept_suggestion_idstyle = 2131231015;
 			
 			static Style()
 			{

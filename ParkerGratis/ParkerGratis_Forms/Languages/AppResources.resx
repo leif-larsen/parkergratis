@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+
+	<data name="SuccessTitle" xml:space="preserve">
+		<value>Successfull</value>
+		<comment>Title text for prompts when an users action successfully completed.</comment>
+	</data>
+
+	<data name="SuccessReportingMessage" xml:space="preserve">
+		<value>Parking location is now reported.</value>
+		<comment>Message text for successfully reporting of parking locations</comment>
+	</data>
+
+	<data name="SuccessVerifyingMessage" xml:space="preserve">
+		<value>Parking location is now verified.</value>
+		<comment>Message text for successfully verifying of parking locations</comment>
+	</data>
+
+	<data name="SuccessAddedParkingMessage" xml:space="preserve">
+		<value>The new parking location is successfully added. Thank you for your contribution!</value>
+		<comment>Message shown to user when a parking spot is added</comment>
+	</data>
+
+	<data name="ErrorTitleText" xml:space="preserve">
+		<value>Error</value>
+		<comment>Title text for error prompts</comment>
+	</data>
+
+	<data name="GeneralErrorMessage" xml:space="preserve">
+		<value>Something unknown went wrong. Contact the developer for help.</value>
+		<comment>Error message for general errors.</comment>
+	</data>
+
+	<data name="OtherTypeSelectedButNoDescText" xml:space="preserve">
+		<value>If you have selected other as parking type, you need to specify the type in the field below.</value>
+		<comment>Error message for when the user have selected other as parking type, but not described it</comment>
+	</data>
+
+	<data name="NoNameWhenAddingParkingError" xml:space="preserve">
+		<value>You need to specify a unique name for the parking location.</value>
+		<comment>Error message for when the user haven't entered a name for the parking location</comment>
+	</data>
+
+	<data name="LoadingText" xml:space="preserve">
+		<value>Loading</value>
+		<comment>Text for loading popups</comment>
+	</data>
+
+	<data name="FreeGivenTime" xml:space="preserve">
+		<value>Free after given time</value>
+		<comment>ParkingType: Free after given time</comment>
+	</data>
+
+	<data name="Hours2" xml:space="preserve">
+		<value>2 hours free</value>
+		<comment>ParkingType: 2 hours free</comment>
+	</data>
+
+	<data name="Hours3" xml:space="preserve">
+		<value>3 hours free</value>
+		<comment>ParkingType: 3 hours free</comment>
+	</data>
+
+	<data name="Hours4" xml:space="preserve">
+		<value>4 hours free</value>
+		<comment>ParkingType: 4 hours free</comment>
+	</data>
+
+	<data name="Hours5" xml:space="preserve">
+		<value>5 hours free</value>
+		<comment>ParkingType: 5 hours free</comment>
+	</data>
+
+	<data name="Other" xml:space="preserve">
+		<value>Other</value>
+		<comment>ParkingType: Other</comment>
+	</data>
+
+	<data name="FreeStreetPark" xml:space="preserve">
+		<value>Free street parking</value>
+		<comment>ParkingType: Free street parking</comment>
+	</data>
+
+	<data name="FreeWithTicket" xml:space="preserve">
+		<value>Free with ticket</value>
+		<comment>ParkingType: Free with ticket</comment>
+	</data>
+
+	<data name="FreeWeekend" xml:space="preserve">
+		<value>Free in the weekend</value>
+		<comment>ParkingType: Free in the weekend</comment>
+	</data>
+
+	<data name="FreeCommute" xml:space="preserve">
+		<value>Free commute parking</value>
+		<comment>ParkingType: Free commute parking</comment>
+	</data>
+
+	<data name="CenterPinText" xml:space="preserve">
+		<value>Add new parking spot</value>
+		<comment>Text for the pin/annotation that is centered, used to add new parking locations</comment>
+	</data>
+
+	<data name="SearchBarPlaceHolderText" xml:space="preserve">
+		<value>Enter a search query</value>
+		<comment>Placeholder text for the search bar</comment>
+	</data>
+
+	<data name="MapPageTitle" xml:space="preserve">
+		<value>Overview</value>
+		<comment>Title for the map page</comment>
+	</data>
+
+	<data name="NewParkingPageTitle" xml:space="preserve">
+		<value>Add new parking</value>
+		<comment>Title for the new parking spot page</comment>
+	</data>
+
+	<data name="NameLabelText" xml:space="preserve">
+		<value>Name</value>
+		<comment>Text for name label</comment>
+	</data>
+
+	<data name="OtherLabelText" xml:space="preserve">
+		<value>Other Information</value>
+		<comment>Text for the other info label</comment>
+	</data>
+
+	<data name="AdditionalInfoLabelText" xml:space="preserve">
+		<value>Additional Information</value>
+		<comment>Text for the additional info label</comment>
+	</data>
+
+	<data name="AddressTextLabel" xml:space="preserve">
+		<value>Address</value>
+		<comment>Text for the address label</comment>
+	</data>
+
+	<data name="LatTextLabel" xml:space="preserve">
+		<value>Latitude</value>
+		<comment>Text for the latitude label</comment>
+	</data>
+
+	<data name="LongTextLabel" xml:space="preserve">
+		<value>Longitude</value>
+		<comment>Text for the longitude label</comment>
+	</data>
+
+	<data name="ParkingTypesLabel" xml:space="preserve">
+		<value>Parking types</value>
+		<comment>Text for the parking types label</comment>
+	</data>
+
+	<data name="ParkingTypeLabel" xml:space="preserve">
+		<value>Parking type</value>
+		<comment>Text for the parking type title</comment>
+	</data>
+
+	<data name="AddLocationButtonText" xml:space="preserve">
+		<value>Add new location</value>
+		<comment>Text for the add new location button</comment>
+	</data>
+
+	<data name="ParkingDetailsAddress" xml:space="preserve">
+		<value>Address:</value>
+		<comment>Text for address title in parking details</comment>
+	</data>
+
+	<data name="ParkingDetailsType" xml:space="preserve">
+		<value>Type:</value>
+		<comment>Text for type title in parking details</comment>
+	</data>
+
+	<data name="ParkingDetailsOtherInfo" xml:space="preserve">
+		<value>Other information:</value>
+		<comment>Text for other info title in parking details</comment>
+	</data>
+
+	<data name="ParkingDetailsAddInfo" xml:space="preserve">
+		<value>Additional information:</value>
+		<comment>Text for additional info title in parking details</comment>
+	</data>
+
+	<data name="ParkingDetailsDistance" xml:space="preserve">
+		<value>Distance:</value>
+		<comment>Text for distance title in parking details</comment>
+	</data>
+
+	<data name="ParkingDetailsVerifiedTitle" xml:space="preserve">
+		<value>Verified:</value>
+		<comment>Text for verified title in parking details</comment>
+	</data>
+
+	<data name="ParkingDetailsReportedTitle" xml:space="preserve">
+		<value>Reported:</value>
+		<comment>Text for reported title in parking details</comment>
+	</data>
+
+	<data name="ParkingDetailsGetDirectionButton" xml:space="preserve">
+		<value>Get directions</value>
+		<comment>Text for the get directions button</comment>
+	</data>
+
+	<data name="ParkingDetailsReportLocationButton" xml:space="preserve">
+		<value>Report location</value>
+		<comment>Text for the report location button</comment>
+	</data>
+
+	<data name="ParkingDetailsVerifyLocationButton" xml:space="preserve">
+		<value>Verify location</value>
+		<comment>Text for the verify location button</comment>
+	</data>
+
+	<data name="ParkingDetailsAbout" xml:space="preserve">
+		<value>About the parking</value>
+		<comment>Text for the details table in parking details</comment>
+	</data>
+
+	<data name="Yes" xml:space="preserve">
+		<value>Yes</value>
+		<comment>Yes</comment>
+	</data>
+
+	<data name="No" xml:space="preserve">
+		<value>No</value>
+		<comment>No</comment>
+	</data>
+</root>

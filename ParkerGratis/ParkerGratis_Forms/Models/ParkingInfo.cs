@@ -62,34 +62,37 @@ namespace ParkerGratis_Forms.Models
 		{
 			switch (_type) {
 			case ParkingTypes.afterhours:
-				Title = "Free after given time";
+				Title = AppResources.FreeGivenTime;
 				break;
 			case ParkingTypes.hours2:
-				Title = "2 hours free";
+				Title = AppResources.Hours2;
 				break;
 			case ParkingTypes.hours3:
-				Title = "3 hours free";
+				Title = AppResources.Hours3;
 				break;
 			case ParkingTypes.hours4:
-				Title = "4 hours free";
+				Title = AppResources.Hours4;
 				break;
 			case ParkingTypes.hours5:
-				Title = "5 hours free";
+				Title = AppResources.Hours5;
 				break;
 			case ParkingTypes.other:
-				Title = "Other";
+				Title = AppResources.Other;
 				break;
 			case ParkingTypes.street:
-				Title = "Free street parking";
+				Title = AppResources.FreeStreetPark;
 				break;
 			case ParkingTypes.ticket:
-				Title = "Free with ticket";
+				Title = AppResources.FreeWithTicket;
 				break;
 			case ParkingTypes.weekend:
-				Title = "Free in the weekend";
+				Title = AppResources.FreeWeekend;
+				break;
+			case ParkingTypes.commute:
+				Title = AppResources.FreeCommute;
 				break;
 			default:
-				Title = "Free street parking";
+				Title = AppResources.FreeStreetPark;
 				break;
 			}
 		} // End setTitle

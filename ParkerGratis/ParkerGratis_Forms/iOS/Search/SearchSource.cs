@@ -47,7 +47,7 @@ namespace ParkerGratis_Forms_iOS.iOS
 			_searchController.SetActive (false, true);
 
 			CLLocationCoordinate2D coords = mapItems [indexPath.Row].Placemark.Location.Coordinate;
-			//_mapView.addParkingLocations (coords.Latitude, coords.Longitude, 10.00);
+			_mapView.addParkingLocations (coords.Latitude, coords.Longitude, 10.00);
 
 			_mapView.Map.SetCenterCoordinate (coords, false);
 			_mapView.Map.SetRegion (new MKCoordinateRegion (coords, new MKCoordinateSpan (GeoUtilities.kmToLatitudeDegrees (2.5), GeoUtilities.kmToLongitudeDegrees (2.5, coords.Latitude))), true);

@@ -6,6 +6,7 @@ using Xamarin.Forms;
 using Acr.UserDialogs;
 using ParkerGratis_Forms.Models;
 using ParkerGratis_Forms.BusinessLogic;
+using ParkerGratis_Forms.Helpers;
 
 namespace ParkerGratis_Forms.ViewModels
 {
@@ -14,23 +15,23 @@ namespace ParkerGratis_Forms.ViewModels
 		private string _nameEntry = string.Empty;
 		private string _otherInfoEntry = string.Empty;
 		private string _additionalInfoEntry = string.Empty;
-		private string _address;
+		private string _address = string.Empty;
 
 		private int _parkingType;
 		private double _latitude;
 		private double _longitude;
 
-		private ParseDataLoader _dataLoader;
 		private NewParkingSpotPage _npsPage;
+		private IParse _parseObj;
 
-		public NewParkingSpotViewModel (string address, double lat, double lon, NewParkingSpotPage npsPage)
+		public NewParkingSpotViewModel (string address, double lat, double lon, NewParkingSpotPage npsPage, IParse parse)
 		{
 			wireCommands ();
 			Address = address;
 			Latitude = lat;
 			Longitude = lon;
-			_dataLoader = new ParseDataLoader ();
 			_npsPage = npsPage;
+			_parseObj = parse;
 		}
 
 		public string NameEntry 
@@ -117,39 +118,48 @@ namespace ParkerGratis_Forms.ViewModels
 			string title = string.Empty;
 			string message = string.Empty;
 			bool errors = false;
+			bool success = false;
 
-			using (UserDialogs.Instance.Loading ("Loading")) {
+			using (UserDialogs.Instance.Loading (AppResources.LoadingText)) {
 				bool addedToParse = false;
 
 				if (!_nameEntry.Equals ("")) {
 					if (_parkingType == (int)ParkingTypes.other && _otherInfoEntry.Equals ("")) {
-						title = "Error";
-						message = "If you have selected other as parking type, you need to specify the type in the field below";
+						title = AppResources.ErrorTitleText;
+						message = AppResources.OtherTypeSelectedButNoDescText;
 						errors = true;
+						success = false;
 					} else {
-						addedToParse = await _dataLoader.addNewParking (_nameEntry, _latitude, _longitude, _otherInfoEntry, _parkingType, _additionalInfoEntry, _address); 
+						addedToParse = await _parseObj.addNewParking (_nameEntry, _latitude, _longitude, _otherInfoEntry, _parkingType, _additionalInfoEntry, _address); 
 
 						if (addedToParse) {
-							await UserDialogs.Instance.AlertAsync ("Successfully added", "The new parking location is successfully added. Thank you for your contribution!", "OK");
+							title = AppResources.SuccessTitle;
+							message = AppResources.SuccessAddedParkingMessage;
 							errors = false;
-							await _npsPage.Navigation.PopAsync ();
+							success = true;
 						}
 						else
 						{
-							title = "Error";
-							message = "Something went wrong when adding the new parking location. Contact the developer for help.";
+							title = AppResources.ErrorTitleText;
+							message = AppResources.GeneralErrorMessage;
 							errors = true;
 						}
 					}
 				} else {
-					title = "Error";
-					message = "You need to specify a unique name for the parking location.";
-					errors = false;
+					title = AppResources.ErrorTitleText;
+					message = AppResources.NoNameWhenAddingParkingError;
+					errors = true;
 				}
 			}
 
 			if(errors)
 				await UserDialogs.Instance.AlertAsync (message, title, "OK");
+
+			if(success)
+			{
+				await UserDialogs.Instance.AlertAsync(message, title, "OK");
+				await _npsPage.Navigation.PopAsync ();
+			}
 		} // end addNewParking
 	}
 }
