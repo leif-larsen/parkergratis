@@ -19,6 +19,9 @@ namespace ParkerGratis_Forms.Pages
 		public string centerPinText = string.Empty;
 		public string ObjId = string.Empty;
 		public string SearchBarPlaceHolder = string.Empty;
+		public string RoadText = AppResources.RoadButtonText;
+		public string HybridText = AppResources.HybridButtonText;
+		public string GoToLocText = AppResources.FindMeButtonText;
 		public List<ParkingInfo> ParkingInfoData;
 
 		private IParse _parseObj;

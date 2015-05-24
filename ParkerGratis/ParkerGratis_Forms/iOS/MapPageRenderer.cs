@@ -27,6 +27,8 @@ namespace ParkerGratis_Forms_iOS.iOS
 		public MKMapView Map { get { return _map; } private set { } }
 		private bool firstTimeOpen = false;
 		private bool _mapDraggedFromPin = false;
+		private UISegmentedControl mapTypes;
+		private nint _lastSelectedSegment;
 
 		protected override void OnElementChanged (VisualElementChangedEventArgs e)
 		{
@@ -69,19 +71,26 @@ namespace ParkerGratis_Forms_iOS.iOS
 				_map.Region = new MKCoordinateRegion (coords, span);
 			}
 
-			int typesWidth=180, typesHeight=30, distanceFromBottom=60;
-			var mapTypes = new UISegmentedControl(new RectangleF(((float)View.Bounds.Width-typesWidth)/2, (float)View.Bounds.Height-distanceFromBottom, typesWidth, typesHeight));
-			mapTypes.InsertSegment("Road", 0, false);
-			mapTypes.InsertSegment("Hybrid", 1, false);
+			int typesWidth=260, typesHeight=30, distanceFromBottom=60;
+			mapTypes = new UISegmentedControl(new RectangleF(((float)View.Bounds.Width-typesWidth)/2, (float)View.Bounds.Height-distanceFromBottom, typesWidth, typesHeight));
+			mapTypes.InsertSegment(_page.RoadText, 0, false);
+			mapTypes.InsertSegment(_page.HybridText, 1, false);
+			mapTypes.InsertSegment(_page.GoToLocText, 2, false);
 			mapTypes.SelectedSegment = 0; // Road is the default
+			_lastSelectedSegment = mapTypes.SelectedSegment;
 			mapTypes.AutoresizingMask = UIViewAutoresizing.FlexibleTopMargin;
 			mapTypes.ValueChanged += (s, e) => {
 				switch(mapTypes.SelectedSegment) {
 				case 0:
+					_lastSelectedSegment = 0;
 					_map.MapType = MKMapType.Standard;
 					break;
 				case 1:
+					_lastSelectedSegment = 1;
 					_map.MapType = MKMapType.Hybrid;
+					break;
+				case 2:
+					findUsersPos();
 					break;
 				}
 			};
@@ -99,7 +108,7 @@ namespace ParkerGratis_Forms_iOS.iOS
 				_map.SetCenterCoordinate(_map.UserLocation.Location.Coordinate, true);
 			};
 
-			view.AddSubview (_btnCurrentLocation);
+			//view.AddSubview (_btnCurrentLocation);
 
 			_searchBar = new UISearchBar(new RectangleF(0,0, (float)View.Frame.Width, 50)) {
 				Placeholder = _page.SearchBarPlaceHolder,
@@ -114,6 +123,13 @@ namespace ParkerGratis_Forms_iOS.iOS
 			_searchController.Delegate = new SearchDelegate ();
 			_searchController.SearchResultsSource = new SearchSource (_searchController, this);
 			view.AddSubview (_searchBar);
+		}
+
+		private void findUsersPos()
+		{
+			addParkingLocations (_map.UserLocation.Location.Coordinate.Latitude, _map.UserLocation.Coordinate.Longitude, 5.00);
+			_map.SetCenterCoordinate(_map.UserLocation.Location.Coordinate, true);
+			mapTypes.SelectedSegment = _lastSelectedSegment;
 		}
 
 		private void _map_ChangedDragState (object sender, MKMapViewChangeEventArgs e)

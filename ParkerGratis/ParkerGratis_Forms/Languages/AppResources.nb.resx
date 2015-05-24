@@ -240,5 +240,20 @@
 		<value>Nei</value>
 		<comment>No</comment>
 	</data>
+
+	<data name="RoadButtonText" xml:space="preserve">
+		<value>Standard</value>
+		<comment>Text for button for map type road (default selected)</comment>
+	</data>
+
+	<data name="HybridButtonText" xml:space="preserve">
+		<value>Hybrid</value>
+		<comment>Text for button for map type hybrid</comment>
+	</data>
+
+	<data name="FindMeButtonText" xml:space="preserve">
+		<value>Gå til min lokasjon</value>
+		<comment>Text for button go to my location</comment>
+	</data>
 </root>
 
