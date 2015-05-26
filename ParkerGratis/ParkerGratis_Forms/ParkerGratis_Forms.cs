@@ -8,6 +8,7 @@ using Acr.XamForms.Mobile.Locations;
 
 using ParkerGratis_Forms.Pages;
 using ParkerGratis_Forms.Helpers;
+using System.Diagnostics;
 
 namespace ParkerGratis_Forms
 {
@@ -19,7 +20,7 @@ namespace ParkerGratis_Forms
 		{
 			if (Device.OS != TargetPlatform.WinPhone)
 				AppResources.Culture = DependencyService.Get<ILocalize> ().GetCurrentCultureInfo ();
-			
+
 			// The root page of your application
 			_mapPage = new NativeMapPage();
 

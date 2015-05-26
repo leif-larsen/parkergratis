@@ -1,27 +1,24 @@
 ﻿<Properties GitUserInfo="UsingGIT" StartupItem="ParkerGratis_Forms/iOS/ParkerGratis_Forms.iOS.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="Android.AndroidEmulator" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ParkerGratis_Forms/Pages/NativeMapPage.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone4s.8.3" />
+  <MonoDevelop.Ide.Workbench>
     <Files>
-      <File FileName="ParkerGratis_Forms/Pages/NativeMapPage.cs" Line="24" Column="28" />
-      <File FileName="ParkerGratis_Forms/Droid/MapPageRenderer.cs" Line="46" Column="29" />
-      <File FileName="ParkerGratis_Forms/iOS/MapPageRenderer.cs" Line="13" Column="1" />
-      <File FileName="ParkerGratis_Forms/Droid/obj/Debug/android/AndroidManifest.xml" Line="35" Column="65" />
-      <File FileName="ParkerGratis_Forms/Droid/MainActivity.cs" Line="28" Column="33" />
-      <File FileName="ParkerGratis_Forms/ParkerGratis_Forms.cs" Line="17" Column="1" />
+      <File FileName="ParkerGratis_Forms/iOS/MapPageRenderer.cs" Line="78" Column="44" />
+      <File FileName="ParkerGratis_Forms/Pages/NativeMapPage.cs" Line="24" Column="61" />
+      <File FileName="ParkerGratis_Forms/Languages/AppResources.resx" Line="241" Column="2" />
+      <File FileName="ParkerGratis_Forms/Languages/AppResources.nb.resx" Line="246" Column="40" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="ParkerGratis" expanded="True" selected="True">
             <Node name="ParkerGratis_Forms" expanded="True">
+              <Node name="Languages" expanded="True" />
               <Node name="Pages" expanded="True" />
             </Node>
-            <Node name="ParkerGratis_Forms.Droid" expanded="True">
-              <Node name="ComponentReferenceFolder" expanded="True" />
-              <Node name="Properties" expanded="True" />
-            </Node>
             <Node name="ParkerGratis_Forms.iOS" expanded="True">
-              <Node name="Helpers" expanded="True" />
+              <Node name="Resources" expanded="True">
+                <Node name="images" expanded="True" />
+              </Node>
             </Node>
           </Node>
         </State>

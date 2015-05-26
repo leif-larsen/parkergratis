@@ -20,8 +20,8 @@ namespace ParkerGratis_Forms.iOS
 		{
 			// Initialize the Parse client with your Application ID and .NET Key found on
 			// your Parse dashboard
-			ParseClient.Initialize("VBsE3wQvNm6IvOgbkQw86OecyLjsnDRqocqTNJ2E",
-				"JOPa8Hu9uJKWMsG37PoC0pFD7wNhe4RWSnaQQsQF");
+			ParseClient.Initialize("2RrpdzkyZzxJTAdXYKDMyuwvbz2YUnqA1KNvf8nu",
+				"pQGQd4u1207eZd2y2N4LkgXHyBWpPFtLrrcZMpzb");
 
 			// Set up iRate for rating prompt. Minimum 10 days, and 15 uses before we ask.
 			iRate.SharedInstance.DaysUntilPrompt = 10;
@@ -29,14 +29,14 @@ namespace ParkerGratis_Forms.iOS
 			//iRate.SharedInstance.ApplicationBundleID = "com.charcoaldesign.rainbowblocks-free"; THIS IS FOR TEST PURPOSES
 			iRate.SharedInstance.OnlyPromptIfLatestVersion = false;
 
-			iRate.SharedInstance.MessageTitle = "Rate My App";
-			iRate.SharedInstance.Message = "If you like MyApp, please take the time, etc";
-			iRate.SharedInstance.CancelButtonLabel = "No, Thanks";
-			iRate.SharedInstance.RemindButtonLabel = "Remind Me Later";
-			iRate.SharedInstance.RateButtonLabel = "Rate It Now";
+			iRate.SharedInstance.MessageTitle = NSBundle.MainBundle.LocalizedString("Rangér Parker Gratis", "");
+			iRate.SharedInstance.Message = NSBundle.MainBundle.LocalizedString("Hvis du liker Parker Gratis setter vi stor pris på tilbakemelding!", "");
+			iRate.SharedInstance.CancelButtonLabel = NSBundle.MainBundle.LocalizedString("Nei takk", "");
+			iRate.SharedInstance.RemindButtonLabel = NSBundle.MainBundle.LocalizedString("Påminnelse senere", "");
+			iRate.SharedInstance.RateButtonLabel = NSBundle.MainBundle.LocalizedString("Rangér nå", "");
 
 			// Enable preview mode so everytime Application is launched you get the promt
-			iRate.SharedInstance.PreviewMode = true;
+			iRate.SharedInstance.PreviewMode = false;
 
 			_locationManager = new CLLocationManager ();
 

@@ -4,7 +4,6 @@ using MapKit;
 using System.Collections.Generic;
 using Foundation;
 using CoreLocation;
-using ParkerGratis_iOS;
 using ParkerGratis_Forms.BusinessLogic;
 
 namespace ParkerGratis_Forms_iOS.iOS

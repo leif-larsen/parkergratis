@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ParkerGratis", "ParkerGratis\ParkerGratis.shproj", "{C188E8A6-386A-4780-9DB9-9D23B0259C42}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkerGratis_iOS", "ParkerGratis_iOS\ParkerGratis_iOS.csproj", "{08A3A932-E8EF-4780-B5FD-504BFA779755}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkerGratis_Forms", "ParkerGratis_Forms\ParkerGratis_Forms.csproj", "{4E78ABE2-BCE5-4D60-80F7-81D7985197E5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkerGratis_Forms.iOS", "ParkerGratis_Forms\iOS\ParkerGratis_Forms.iOS.csproj", "{0F972406-FC16-4CB4-A8AB-CD9F9CAD2AC7}"
@@ -21,18 +19,6 @@ Global
 		AppStore|iPhone = AppStore|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{08A3A932-E8EF-4780-B5FD-504BFA779755}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
-		{08A3A932-E8EF-4780-B5FD-504BFA779755}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
-		{08A3A932-E8EF-4780-B5FD-504BFA779755}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
-		{08A3A932-E8EF-4780-B5FD-504BFA779755}.AppStore|iPhone.Build.0 = AppStore|iPhone
-		{08A3A932-E8EF-4780-B5FD-504BFA779755}.Debug|iPhone.ActiveCfg = Debug|iPhone
-		{08A3A932-E8EF-4780-B5FD-504BFA779755}.Debug|iPhone.Build.0 = Debug|iPhone
-		{08A3A932-E8EF-4780-B5FD-504BFA779755}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
-		{08A3A932-E8EF-4780-B5FD-504BFA779755}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
-		{08A3A932-E8EF-4780-B5FD-504BFA779755}.Release|iPhone.ActiveCfg = Release|iPhone
-		{08A3A932-E8EF-4780-B5FD-504BFA779755}.Release|iPhone.Build.0 = Release|iPhone
-		{08A3A932-E8EF-4780-B5FD-504BFA779755}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
-		{08A3A932-E8EF-4780-B5FD-504BFA779755}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 		{0F972406-FC16-4CB4-A8AB-CD9F9CAD2AC7}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
 		{0F972406-FC16-4CB4-A8AB-CD9F9CAD2AC7}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
 		{0F972406-FC16-4CB4-A8AB-CD9F9CAD2AC7}.AppStore|iPhone.ActiveCfg = AppStore|iPhone

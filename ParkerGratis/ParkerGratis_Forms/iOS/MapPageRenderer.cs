@@ -9,6 +9,7 @@ using ParkerGratis_Forms.Pages;
 using System.Drawing;
 
 using ParkerGratis_Forms.iOS.Helpers;
+using MonoTouch.Dialog;
 
 [assembly:ExportRenderer(typeof(ParkerGratis_Forms.Pages.NativeMapPage), typeof(ParkerGratis_Forms_iOS.iOS.MapPageRenderer))]
 
@@ -19,7 +20,7 @@ namespace ParkerGratis_Forms_iOS.iOS
 		private NativeMapPage _page;
 		private MKMapView _map;
 		private UIButton _detailButton;
-		private UIButton _btnCurrentLocation;
+		//private UIButton _btnCurrentLocation;
 		private MKPointAnnotation _centerPin;
 		private UISearchBar _searchBar;
 		protected string annotationIdentifier = "ParkingAnnotation";
@@ -96,8 +97,8 @@ namespace ParkerGratis_Forms_iOS.iOS
 			};
 
 			View.AddSubview (mapTypes);
-			// Creates and add a button to center on current location
-			var imageCurrentLocation = UIImage.FromBundle ("images/currentloc.png");
+			// Creates and add a button to center on current location, not in use as of today (25.05.15)
+			/*var imageCurrentLocation = UIImage.FromBundle ("images/currentloc.png");
 
 			_btnCurrentLocation = UIButton.FromType (UIButtonType.Custom);
 			_btnCurrentLocation.Frame = new RectangleF ((float)View.Frame.Width - 60, (float)View.Frame.Height - 135, 60, 60);
@@ -106,11 +107,11 @@ namespace ParkerGratis_Forms_iOS.iOS
 			_btnCurrentLocation.TouchUpInside += (sender, e) => {
 				addParkingLocations (_map.UserLocation.Location.Coordinate.Latitude, _map.UserLocation.Coordinate.Longitude, 5.00);
 				_map.SetCenterCoordinate(_map.UserLocation.Location.Coordinate, true);
-			};
+			};*/
 
 			//view.AddSubview (_btnCurrentLocation);
 
-			_searchBar = new UISearchBar(new RectangleF(0,0, (float)View.Frame.Width, 50)) {
+			_searchBar = new UISearchBar() {
 				Placeholder = _page.SearchBarPlaceHolder,
 				AutocorrectionType = UITextAutocorrectionType.No,
 				BackgroundColor = UIColor.White
@@ -121,6 +122,7 @@ namespace ParkerGratis_Forms_iOS.iOS
 			_searchBar.SizeToFit ();
 			_searchController = new UISearchDisplayController (_searchBar, this);
 			_searchController.Delegate = new SearchDelegate ();
+			_searchController.SearchResultsTitle = "";
 			_searchController.SearchResultsSource = new SearchSource (_searchController, this);
 			view.AddSubview (_searchBar);
 		}
@@ -130,6 +132,7 @@ namespace ParkerGratis_Forms_iOS.iOS
 			addParkingLocations (_map.UserLocation.Location.Coordinate.Latitude, _map.UserLocation.Coordinate.Longitude, 5.00);
 			_map.SetCenterCoordinate(_map.UserLocation.Location.Coordinate, true);
 			mapTypes.SelectedSegment = _lastSelectedSegment;
+			regenCenterPin(_map.CenterCoordinate);
 		}
 
 		private void _map_ChangedDragState (object sender, MKMapViewChangeEventArgs e)
@@ -140,11 +143,12 @@ namespace ParkerGratis_Forms_iOS.iOS
 			} 
 
 			_mapDraggedFromPin = false;
-			addParkingLocations (_map.CenterCoordinate.Latitude, _map.CenterCoordinate.Longitude, 5.00);
 		}
 
 		private async void regenCenterPin(CLLocationCoordinate2D coords)
 		{
+			_page.centerLatitude = coords.Latitude;
+			_page.centerLongitude = coords.Longitude;
 			var address = await _page.getCurrentAddress ();
 			if (_centerPin != null) {
 				_map.RemoveAnnotation (_centerPin);
@@ -172,8 +176,6 @@ namespace ParkerGratis_Forms_iOS.iOS
 		{
 			if (e.OldState == MKAnnotationViewDragState.Ending) {
 				var loc = (MKPointAnnotation)e.AnnotationView.Annotation;
-				_page.centerLatitude = loc.Coordinate.Latitude;
-				_page.centerLongitude = loc.Coordinate.Longitude;
 				regenCenterPin (new CLLocationCoordinate2D(loc.Coordinate.Latitude, loc.Coordinate.Longitude));
 				_mapDraggedFromPin = true;
 			}

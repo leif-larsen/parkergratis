@@ -252,7 +252,7 @@
 	</data>
 
 	<data name="FindMeButtonText" xml:space="preserve">
-		<value>Gå til min lokasjon</value>
+		<value>Min lokasjon</value>
 		<comment>Text for button go to my location</comment>
 	</data>
 </root>

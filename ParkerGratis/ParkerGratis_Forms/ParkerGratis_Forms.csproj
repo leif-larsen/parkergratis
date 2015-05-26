@@ -90,7 +90,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Languages\AppResources.nb.resx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BusinessLogic\" />
@@ -102,6 +101,7 @@
     <Folder Include="Languages\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Languages\AppResources.nb.resx" />
     <EmbeddedResource Include="Languages\AppResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
