@@ -1,29 +1,12 @@
 ﻿<Properties GitUserInfo="UsingGIT" StartupItem="ParkerGratis_Forms/iOS/ParkerGratis_Forms.iOS.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone4s.8.3" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPadRetina.8.3" />
   <MonoDevelop.Ide.Workbench>
     <Files>
-      <File FileName="ParkerGratis_Forms/iOS/MapPageRenderer.cs" Line="78" Column="44" />
-      <File FileName="ParkerGratis_Forms/Pages/NativeMapPage.cs" Line="24" Column="61" />
-      <File FileName="ParkerGratis_Forms/Languages/AppResources.resx" Line="241" Column="2" />
-      <File FileName="ParkerGratis_Forms/Languages/AppResources.nb.resx" Line="246" Column="40" />
+      <File FileName="ParkerGratis_Forms/iOS/Search/SearchSource.cs" Line="24" Column="38" />
+      <File FileName="ParkerGratis_Forms/iOS/MapPageRenderer.cs" Line="127" Column="33" />
+      <File FileName="ParkerGratis_Forms/iOS/Search/SearchDelegate.cs" Line="12" Column="4" />
+      <File FileName="ParkerGratis_Forms/iOS/Info.plist" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="ParkerGratis" expanded="True" selected="True">
-            <Node name="ParkerGratis_Forms" expanded="True">
-              <Node name="Languages" expanded="True" />
-              <Node name="Pages" expanded="True" />
-            </Node>
-            <Node name="ParkerGratis_Forms.iOS" expanded="True">
-              <Node name="Resources" expanded="True">
-                <Node name="images" expanded="True" />
-              </Node>
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
