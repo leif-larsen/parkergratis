@@ -1,6 +1,6 @@
 ﻿<Properties GitUserInfo="UsingGIT" StartupItem="ParkerGratis_Forms/iOS/ParkerGratis_Forms.iOS.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPadRetina.8.3" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="ParkerGratis_Forms/iOS/Search/SearchSource.cs">
     <Files>
       <File FileName="ParkerGratis_Forms/iOS/Search/SearchSource.cs" Line="24" Column="38" />
       <File FileName="ParkerGratis_Forms/iOS/MapPageRenderer.cs" Line="1" Column="1" />
