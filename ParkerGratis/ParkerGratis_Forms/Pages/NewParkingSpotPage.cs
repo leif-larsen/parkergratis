@@ -13,9 +13,9 @@ namespace ParkerGratis_Forms
 {
 	public class NewParkingSpotPage : ContentPage
 	{
-		public NewParkingSpotPage (double latitude, double longitude, string address, IParse parse)
+		public NewParkingSpotPage (double latitude, double longitude, string address, IParse parse, string name)
 		{
-			this.BindingContext = new NewParkingSpotViewModel (address, latitude,longitude, this, parse);
+			this.BindingContext = new NewParkingSpotViewModel (address, latitude,longitude, this, parse, name);
 
 			Title = AppResources.NewParkingPageTitle;
 

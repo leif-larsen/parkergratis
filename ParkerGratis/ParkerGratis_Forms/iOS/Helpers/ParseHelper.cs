@@ -40,6 +40,7 @@ namespace ParkerGratis_Forms.iOS.Helpers
 
 		public async Task<List<ParkingInfo>> execGeoQuery(double userLat, double userLong, double distance) 
 		{
+			_geoList.Clear ();
 			var userGeoPoint = new ParseGeoPoint (userLat, userLong);
 			var query = ParseObject.GetQuery ("FreeParking");
 			//query = query.WhereNear ("location", userGeoPoint);

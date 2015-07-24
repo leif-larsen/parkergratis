@@ -25,6 +25,7 @@ namespace ParkerGratis_Forms.Pages
 		public List<ParkingInfo> ParkingInfoData;
 
 		private IParse _parseObj;
+		private string _parkingSpotName = string.Empty;
 
 		public NativeMapPage ()
 		{
@@ -38,7 +39,7 @@ namespace ParkerGratis_Forms.Pages
 			if (Device.OS == TargetPlatform.iOS) {
 				tbi = new ToolbarItem ("+", null, async () => {
 					var address = (await (new GeoUtilities ()).getAddressFromPosition (centerLatitude, centerLongitude));
-					var newParkingSpot = new NewParkingSpotPage (centerLatitude, centerLongitude, address, _parseObj);
+					var newParkingSpot = new NewParkingSpotPage (centerLatitude, centerLongitude, address, _parseObj, _parkingSpotName);
 					await Navigation.PushAsync (newParkingSpot);
 				}, 0, 0);
 			}
@@ -46,7 +47,7 @@ namespace ParkerGratis_Forms.Pages
 			if (Device.OS == TargetPlatform.Android) {
 				tbi = new ToolbarItem ("+", "plus", async () => {
 					var address = (await (new GeoUtilities ()).getAddressFromPosition (centerLatitude, centerLongitude));
-					var newParkingSpot = new NewParkingSpotPage (centerLatitude, centerLongitude, address, _parseObj);
+					var newParkingSpot = new NewParkingSpotPage (centerLatitude, centerLongitude, address, _parseObj, _parkingSpotName);
 					await Navigation.PushAsync (newParkingSpot);
 				}, 0, 0);
 			}
@@ -56,6 +57,7 @@ namespace ParkerGratis_Forms.Pages
 		public async Task<string> getCurrentAddress()
 		{
 			var address = (await (new GeoUtilities ()).getAddressFromPosition (centerLatitude, centerLongitude));
+			_parkingSpotName = GetParkingSpotName (address);
 
 			return address;
 		}
@@ -63,7 +65,7 @@ namespace ParkerGratis_Forms.Pages
 		public async void addNewParking()
 		{
 			var address = await getCurrentAddress ();
-			var newParkingSpot = new NewParkingSpotPage (centerLatitude, centerLongitude, address.ToString(), _parseObj);
+			var newParkingSpot = new NewParkingSpotPage (centerLatitude, centerLongitude, address.ToString(), _parseObj, _parkingSpotName);
 			await Navigation.PushAsync (newParkingSpot);
 		}
 
@@ -78,6 +80,16 @@ namespace ParkerGratis_Forms.Pages
 			ParkingInfoData = await _parseObj.execGeoQuery (CurrentLatitude, CurrentLongitude, Distance);
 			return ParkingInfoData;
 		} // end updateParkingLocations
+
+		private string GetParkingSpotName(string address)
+		{
+			var addressArray = address.Split ('\n');
+
+			if (addressArray == null || addressArray [0].Equals (""))
+				return string.Empty;
+			else
+				return addressArray [0];
+		}
 	}
 }
 

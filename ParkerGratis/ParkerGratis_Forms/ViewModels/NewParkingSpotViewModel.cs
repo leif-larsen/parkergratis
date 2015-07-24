@@ -24,7 +24,7 @@ namespace ParkerGratis_Forms.ViewModels
 		private NewParkingSpotPage _npsPage;
 		private IParse _parseObj;
 
-		public NewParkingSpotViewModel (string address, double lat, double lon, NewParkingSpotPage npsPage, IParse parse)
+		public NewParkingSpotViewModel (string address, double lat, double lon, NewParkingSpotPage npsPage, IParse parse, string name)
 		{
 			wireCommands ();
 			Address = address;
@@ -32,6 +32,7 @@ namespace ParkerGratis_Forms.ViewModels
 			Longitude = lon;
 			_npsPage = npsPage;
 			_parseObj = parse;
+			NameEntry = name;
 		}
 
 		public string NameEntry 

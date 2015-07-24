@@ -1,11 +1,10 @@
 ﻿<Properties GitUserInfo="UsingGIT" StartupItem="ParkerGratis_Forms/iOS/ParkerGratis_Forms.iOS.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPadRetina.8.3" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ParkerGratis_Forms/iOS/Search/SearchSource.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone4s.8.4" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="ParkerGratis_Forms/iOS/MapPageRenderer.cs">
     <Files>
-      <File FileName="ParkerGratis_Forms/iOS/Search/SearchSource.cs" Line="24" Column="38" />
-      <File FileName="ParkerGratis_Forms/iOS/MapPageRenderer.cs" Line="1" Column="1" />
-      <File FileName="ParkerGratis_Forms/iOS/Search/SearchDelegate.cs" Line="1" Column="1" />
-      <File FileName="ParkerGratis_Forms/iOS/Info.plist" />
+      <File FileName="ParkerGratis_Forms/Pages/NativeMapPage.cs" Line="59" Column="4" />
+      <File FileName="ParkerGratis_Forms/iOS/MapPageRenderer.cs" Line="138" Column="3" />
+      <File FileName="ParkerGratis_Forms/iOS/Search/SearchSource.cs" Line="49" Column="13" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

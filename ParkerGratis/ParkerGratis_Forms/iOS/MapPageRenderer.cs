@@ -10,6 +10,7 @@ using System.Drawing;
 
 using ParkerGratis_Forms.iOS.Helpers;
 using MonoTouch.Dialog;
+using System.Collections.Generic;
 
 [assembly:ExportRenderer(typeof(ParkerGratis_Forms.Pages.NativeMapPage), typeof(ParkerGratis_Forms_iOS.iOS.MapPageRenderer))]
 
@@ -30,6 +31,7 @@ namespace ParkerGratis_Forms_iOS.iOS
 		private bool _mapDraggedFromPin = false;
 		private UISegmentedControl mapTypes;
 		private nint _lastSelectedSegment;
+		private List<string> _addedAnnotations = new List<string> ();
 
 		protected override void OnElementChanged (VisualElementChangedEventArgs e)
 		{
@@ -189,58 +191,62 @@ namespace ParkerGratis_Forms_iOS.iOS
 
 			var parkingLocations = await _page.updateParkingLocations ();
 
-			if(parkingLocations != null) {
+			if (parkingLocations != null) {
 				foreach (var parkingLoc in parkingLocations) {
-					var annotation = new ParkingAnnotation (parkingLoc.Name, new CLLocationCoordinate2D (parkingLoc.Latitude, parkingLoc.Longitude), parkingLoc.Title, parkingLoc.ObjId, parkingLoc.Verified);
-					_map.AddAnnotation (annotation);
+					if (!_addedAnnotations.Contains (parkingLoc.ObjId)) {
+						_addedAnnotations.Add (parkingLoc.ObjId);
+						var annotation = new ParkingAnnotation (parkingLoc.Name, new CLLocationCoordinate2D (parkingLoc.Latitude, parkingLoc.Longitude), parkingLoc.Title, parkingLoc.ObjId, parkingLoc.Verified);
+						_map.AddAnnotation (annotation);
+						System.Diagnostics.Debug.WriteLine ("init new annotation, " + _addedAnnotations.Count);
+					}
 				}
 			}
 		} // end addParkingLocations
 
 		MKAnnotationView GetViewForAnnotation(MKMapView mapView, IMKAnnotation annotation)
 		{
-			MKAnnotationView annotationView = mapView.DequeueReusableAnnotation (annotationIdentifier);
+				MKAnnotationView annotationView = mapView.DequeueReusableAnnotation (annotationIdentifier);
 
-			var curLoc = mapView.UserLocation.Coordinate;
-			var annotationLoc = annotation.Coordinate;
+				var curLoc = mapView.UserLocation.Coordinate;
+				var annotationLoc = annotation.Coordinate;
 
-			if (curLoc.Latitude == annotationLoc.Latitude && curLoc.Longitude == annotationLoc.Longitude)
-				return null;
+				if (curLoc.Latitude == annotationLoc.Latitude && curLoc.Longitude == annotationLoc.Longitude)
+					return null;
 			
-			if (annotationView == null)
-				annotationView = new MKPinAnnotationView (annotation, annotationIdentifier);
-			else
-				annotationView.Annotation = annotation;
+				if (annotationView == null)
+					annotationView = new MKPinAnnotationView (annotation, annotationIdentifier);
+				else
+					annotationView.Annotation = annotation;
 
 
-			(annotationView as MKPinAnnotationView).AnimatesDrop = false;
-			annotationView.Selected = true;
+				(annotationView as MKPinAnnotationView).AnimatesDrop = false;
+				annotationView.Selected = true;
 
-			if ((annotationLoc.Latitude == _map.CenterCoordinate.Latitude && annotationLoc.Longitude == _map.CenterCoordinate.Longitude) 
-				|| (annotationLoc.Latitude == _page.centerLatitude && annotationLoc.Longitude == _page.centerLongitude)) {
-				(annotationView as MKPinAnnotationView).PinColor = MKPinAnnotationColor.Green;
-				annotationView.CanShowCallout = true;
-				annotationView.Draggable = true;
+				if ((annotationLoc.Latitude == _map.CenterCoordinate.Latitude && annotationLoc.Longitude == _map.CenterCoordinate.Longitude)
+				    || (annotationLoc.Latitude == _page.centerLatitude && annotationLoc.Longitude == _page.centerLongitude)) {
+					(annotationView as MKPinAnnotationView).PinColor = MKPinAnnotationColor.Green;
+					annotationView.CanShowCallout = true;
+					annotationView.Draggable = true;
 
-				_detailButton = UIButton.FromType (UIButtonType.ContactAdd);
+					_detailButton = UIButton.FromType (UIButtonType.ContactAdd);
 
-				_detailButton.TouchUpInside += (sender, e) => {
-					_page.addNewParking();
-				};
-			} else {
-				annotationView.CanShowCallout = true;
-				(annotationView as MKPinAnnotationView).PinColor = MKPinAnnotationColor.Red;
+					_detailButton.TouchUpInside += (sender, e) => {
+						_page.addNewParking ();
+					};
+				} else {
+					annotationView.CanShowCallout = true;
+					(annotationView as MKPinAnnotationView).PinColor = MKPinAnnotationColor.Red;
 
-				_detailButton = UIButton.FromType (UIButtonType.DetailDisclosure);
-				_detailButton.TouchUpInside += (sender, e) => {
-					_page.ObjId = ((ParkingAnnotation)annotation).ObjId;
-					_page.showParkingDetail();
-				};
-			}
+					_detailButton = UIButton.FromType (UIButtonType.DetailDisclosure);
+					_detailButton.TouchUpInside += (sender, e) => {
+						_page.ObjId = ((ParkingAnnotation)annotation).ObjId;
+						_page.showParkingDetail ();
+					};
+				}
 
-			annotationView.RightCalloutAccessoryView = _detailButton;
+				annotationView.RightCalloutAccessoryView = _detailButton;
 
-			return annotationView;
+				return annotationView;
 		} // end GetViewForAnnotation
 	}
 }
